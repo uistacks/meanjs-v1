@@ -1,0 +1,62 @@
+<section>
+  <div class="page-header">
+    <h1>Manage Booking Time Slots</h1>
+  </div>
+  <div class="pull-right">
+    <a ng-show="vm.bookingtimeslot._id" class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div class="row">
+  <div class="col-md-10 col-md-offset-1"><div class="x_panel">
+    <div class="x_title">
+      <h3>{{vm.bookingtimeslot._id ? 'Update Booking Time Slot' : 'Add New Booking Time Slot'}} <small>Use below form to change the fields</small></h3>
+    </div>
+    <div class="x_content">
+    <form name="vm.form.bookingtimeslotForm" class="form-horizontal" ng-submit="vm.save(vm.form.bookingtimeslotForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="area">Choose Area</label>
+          <select name="area" ng-model="vm.bookingtimeslot.area" id="area" class="form-control" required>
+            <option value="">Choose Area</option>
+            <option ng-repeat="area in vm.areas" value="{{area._id}}">{{area.title}}</option>
+          </select>
+          <div ng-messages="vm.form.bookingtimeslotForm.area.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Area is required.</p>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-md-7 col-sm-12">
+        <div class="form-group" show-errors>
+          <label class="control-label" for="minDuration">Minimum Duration between two times</label>
+          <input type="text" class="form-control" name="minDuration" data-ng-model="vm.bookingtimeslot.minDuration" id="minDuration" placeholder="minimum duration between two time. Ex. 1 hour will do 1pm, 2pm etc, 30 min will do 1pm, 1:30 pm etc." required />
+          <div ng-messages="vm.form.bookingtimeslotForm.minDuration.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Duration is required.</p>
+          </div>
+        </div>
+        </div>
+
+        <div class="col-md-5 col-sm-12">
+          <div class="form-group" show-errors>
+            <label class="control-label" for="minDurationType">Duration Type</label>
+            <select class="form-control" name="minDurationType" data-ng-model="vm.bookingtimeslot.minDurationType" id="minDurationType" required >
+              <option value="">Choose duration type</option>
+              <option value="h">Hours</option>
+              <option value="m">Minutes</option>
+            </select>
+            <div ng-messages="vm.form.bookingtimeslotForm.minDurationType.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Duration Type is required.</p>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.bookingtimeslot._id ? 'Update' : 'Create'}}</button> <a class="btn btn-default" role="button" ui-sref="admin.bookingtimeslots.list">Cancel</a>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>

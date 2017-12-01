@@ -1,0 +1,83 @@
+<section class="inner-page-top-sec" style="background-image:url(/media/img/slide1.jpg);">
+    <div class="container">
+        <h2>Register</h2>
+        <div class="page-bradcrums">
+            <ol class="breadcrumb">
+                <li><a href="javascript:void(0)">Home</a></li>
+                <li class="active">Register</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<section class="log-reg-sec">
+    <div class="popup-outer">
+        <div class="">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="madal-logo"><a href="javascript:void(0)"><img src="/media/img/modal-logo.png" alt="site Logo"/></a></div>
+                    </div>
+                    <div class="modal-body log-form-flds">
+                        <h1>Create Your Account</h1>
+                        <form name="vm.userForm" ng-submit="vm.signup(vm.userForm.$valid)" class="signin" novalidate autocomplete="off" novalidate>
+                            <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.credentials.firstName" placeholder="First Name" required autofocus>
+                            
+                            <div ng-if="submitted || vm.userForm.firstName.$dirty">
+                            <div  ng-messages="vm.userForm.firstName.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">First name is required.</p>
+                            </div>
+                            </div>
+                            <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.credentials.lastName" placeholder="Last Name" required>
+                            <div ng-if="submitted || vm.userForm.lastName.$dirty">
+                            <div ng-messages="vm.userForm.lastName.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">Last name is required.</p>
+                            </div>
+                            </div>
+
+                            <input type="email" id="email" name="email" class="form-control" ng-model="vm.credentials.email" placeholder="Email" lowercase required>
+                            
+                            <div ng-if="submitted || vm.userForm.email.$dirty">
+                            <div ng-messages="vm.userForm.email.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">Email address is required.</p>
+                                <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
+                            </div>
+                            </div>
+
+                            <input type="text" id="mobileNo" name="mobileNo" class="form-control" ng-model="vm.credentials.mobileNo" placeholder="Mobile No">
+
+                            <input type="text" id="username" name="username" class="form-control" ng-model="vm.credentials.username" ng-pattern="vm.usernameRegex" placeholder="Username" lowercase required >
+                            
+                            <div ng-if="submitted || vm.userForm.username.$dirty">
+                            <div ng-messages="vm.userForm.username.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">Username is required.</p>
+                                <p class="help-block error-text" ng-message="pattern">Please enter a valid username: 3+ characters long, non restricted word, characters "_-.", no consecutive dots, does not begin or end with dots, letters a-z and numbers 0-9.</p>
+                            </div>
+                            </div>
+                            
+                            <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password" placeholder="Password" uib-popover="{{vm.getPopoverMsg()}}" popover-trigger="outsideClick" password-validator required>
+                            <div ng-if="submitted || vm.userForm.password.$dirty">
+                            <div ng-messages="vm.userForm.password.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">Password is required.</p>
+                                <div ng-repeat="passwordError in passwordErrors">
+                                    <p class="help-block error-text" ng-show="vm.userForm.password.$error.requirements">{{passwordError}}</p>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form-group" ng-show="!vm.userForm.password.$error.required">
+                                <label>Password Requirements</label>
+                                <uib-progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></uib-progressbar>
+                            </div>
+                            <button type="submit" class="btn">SIGN UP</button>
+                            <div class="clearfix cust-checker">
+                                <div class="text-center">By clicking Sign Up, you agree to XYZ.com's <a href="javascript:void(0)">Terms of Use</a> and <a href="javascript:void(0)">Privacy Policy</a>.</div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        Already have an account? <a ui-sref="authentication.signin" >Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

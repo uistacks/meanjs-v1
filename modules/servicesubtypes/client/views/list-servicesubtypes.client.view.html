@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <h1>Servicesubtypes</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="servicesubtype in vm.servicesubtypes" ui-sref="servicesubtypes.view({ servicesubtypeId: servicesubtype._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="servicesubtype.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="servicesubtype.user" ng-bind="servicesubtype.user.displayName"></span>
+        <span ng-if="!servicesubtype.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="servicesubtype.title"></h4>
+      <p class="list-group-item-text" ng-bind="servicesubtype.content"></p>
+    </a>
+  </div>
+</section>

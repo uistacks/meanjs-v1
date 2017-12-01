@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" ng-strict-di>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title page-title>Admin Panel</title>
+  <meta name="description" content="{{description}}">
+  <meta name="fragment" content="!">
+
+  <!-- Apple META -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- Facebook META -->
+  <meta property="fb:app_id" content="{{facebookAppId}}">
+  <meta property="og:site_name" content="{{title}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="{{url}}">
+  <meta property="og:image" content="{{logo}}">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter META -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="{{twitterUsername}}">
+  <meta name="twitter:title" content="{{title}}">
+  <meta name="twitter:description" content="{{description}}">
+  <meta name="twitter:image" content="{{logo}}">
+
+  <!-- Fav Icon -->
+  <link href="/{{favicon}}" rel="shortcut icon" type="image/x-icon">
+  <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css"><link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap-theme.css"><link rel="stylesheet" href="/lib/angular-ui-notification/dist/angular-ui-notification.css"><link rel="stylesheet" href="/modules/chat/client/css/chat.css"><link rel="stylesheet" href="/modules/core/client/css/core.css"><link rel="stylesheet" href="/modules/users/client/css/users.css">
+  <!-- Application CSS Files -->
+  <!-- Bootstrap -->
+
+  <!-- Font Awesome -->
+  <link href="/admin-theme/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="/admin-theme/nprogress/nprogress.css" rel="stylesheet">
+  <!-- iCheck -->
+  <link href="/admin-theme/iCheck/skins/flat/green.css" rel="stylesheet">
+
+  <!-- bootstrap-progressbar -->
+  <link href="/admin-theme/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+  <!-- JQVMap -->
+  <link href="/admin-theme/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+  <!-- bootstrap-daterangepicker -->
+  <link href="/admin-theme/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+  <!-- Custom Theme Style -->
+  <link href="/admin-theme/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="ng-cloak login">
+
+  <div class="container body">
+    <div class="main_container">
+          {{{block "content"}}}
+    </div>
+  </div>
+
+  <noscript>
+    <style>
+      [ng\:cloak], [ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: block !important;
+      }
+    </style>
+    <div class="alert alert-warning">
+      <strong>This page requires JavaScript.</strong> Please enable it in your browser.
+    </div>
+  </noscript>
+
+  <!--Embedding The User Object-->
+  <script type="text/javascript">
+    var env = "{{ env }}";
+  </script>
+
+  <!--Load The Socket.io File-->
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+  <!--Application JavaScript Files-->
+    {{#each jsFiles}}<script type="text/javascript" src="/{{this}}"></script>{{/each}}
+  <!-- jQuery -->
+  <script src="/admin-theme/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="/admin-theme/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <!-- FastClick -->
+  <script src="/admin-theme/fastclick/lib/fastclick.js"></script>
+  <!-- NProgress -->
+  <script src="/admin-theme/nprogress/nprogress.js"></script>
+  <!-- Chart.js -->
+  <script src="/admin-theme/Chart.js/dist/Chart.min.js"></script>
+  <!-- gauge.js -->
+  <script src="/admin-theme/gauge.js/dist/gauge.min.js"></script>
+  <!-- bootstrap-progressbar -->
+  <script src="/admin-theme/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+  <!-- iCheck -->
+  <script src="/admin-theme/iCheck/icheck.min.js"></script>
+  <!-- Skycons -->
+  <script src="/admin-theme/skycons/skycons.js"></script>
+  <!-- Flot -->
+  <script src="/admin-theme/Flot/jquery.flot.js"></script>
+  <script src="/admin-theme/Flot/jquery.flot.pie.js"></script>
+  <script src="/admin-theme/Flot/jquery.flot.time.js"></script>
+  <script src="/admin-theme/Flot/jquery.flot.stack.js"></script>
+  <script src="/admin-theme/Flot/jquery.flot.resize.js"></script>
+  <!-- Flot plugins -->
+  <script src="/admin-theme/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+  <script src="/admin-theme/flot-spline/js/jquery.flot.spline.min.js"></script>
+  <script src="/admin-theme/flot.curvedlines/curvedLines.js"></script>
+  <!-- DateJS -->
+  <script src="/admin-theme/DateJS/build/date.js"></script>
+  <!-- JQVMap -->
+  <script src="/admin-theme/jqvmap/dist/jquery.vmap.js"></script>
+  <script src="/admin-theme/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+  <script src="/admin-theme/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+  <!-- bootstrap-daterangepicker -->
+  <script src="/admin-theme/moment/min/moment.min.js"></script>
+  <script src="/admin-theme/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+  <!-- Custom Theme Scripts -->
+  <script src="/admin-theme/custom.min.js"></script>
+
+
+  <!--owasp config sync-->
+  <script type="text/javascript">
+    var sharedConfig = {{{ sharedConfig }}};
+    owaspPasswordStrengthTest.config(sharedConfig.owasp);
+  </script>
+<script src="https://code.angularjs.org/1.5.5/angular-cookies.js"></script>
+  {{#if livereload}}
+  <!--Livereload script rendered -->
+  <script type="text/javascript" src="{{host}}:35729/livereload.js"></script>
+  {{/if}}
+</body>
+
+</html>

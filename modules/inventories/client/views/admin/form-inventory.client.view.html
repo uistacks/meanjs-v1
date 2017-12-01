@@ -1,0 +1,86 @@
+<style>
+  .angular-google-map-container { height: 400px; }
+  .searchboxInput {padding:5px; top:10px !important; width: 250px;}
+</style>
+<section>
+  <div class="page-header">
+    <h1>Manage Inventories</h1>
+  </div>
+  <div class="pull-right">
+    <a ng-show="vm.inventory._id" class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div class="row">
+  <div class="col-md-10 col-md-offset-1"><div class="x_panel">
+    <div class="x_title">
+      <h3>{{vm.inventory._id ? 'Update Inventory Item' : 'Add New Inventory Item'}} <small>Use below form to change the fields</small></h3>
+    </div>
+    <div class="x_content">
+    <form name="vm.form.inventoryForm" class="form-horizontal" ng-submit="vm.save(vm.form.inventoryForm.$valid)" novalidate>
+      <fieldset>
+          
+      <div class="form-group" show-errors ng-if="vm.authentication.user.roles[0] == 'admin' || vm.authentication.user.roles[0] == 'mastercontroller'"> 
+          <label class="control-label" for="area">Choose Area</label>
+          <select name="area" id="area" ng-model="vm.inventory.area" ng-change="setAreaServiceTypes(true)" class="form-control" required>
+            <option ng-repeat="area in vm.areas" value="{{area._id}}">{{area.title}}</option>
+          </select>
+          <div ng-messages="vm.form.inventoryForm.area.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Area is required.</p>
+          </div>
+     </div>
+          
+      <div class="form-group" show-errors ng-if="vm.authentication.user.roles[0] != 'admin' &&  vm.authentication.user.roles[0] != 'mastercontroller'"> 
+          <input type="text"  name="area" id="area" required  value="{{vm.userDetail.area}}" ng-hide="true">
+          <div ng-messages="vm.form.inventoryForm.area.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Area is required.</p>
+          </div>
+       </div>
+          
+        <div class="form-group" show-errors>
+          <label class="control-label" for="servicetype">Choose Service Type</label>
+          <select name="servicetype" id="servicetype" ng-model="vm.inventory.servicetype" class="form-control" required>
+            <option ng-repeat="areaServiceType in vm.areaServiceTypes" value="{{areaServiceType._id}}">{{areaServiceType.title}}</option>
+          </select>
+          <div ng-messages="vm.form.inventoryForm.servicetype.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Service Type is required.</p>
+          </div>
+        </div>
+          
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Title</label>
+          <input name="title" type="text" ng-model="vm.inventory.title" id="title" class="form-control" placeholder="Title" required autofocus>
+          <div ng-messages="vm.form.inventoryForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Inventory title is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">Inventory Description</label>
+          <textarea class="form-control" name="content" data-ng-model="vm.inventory.content" id="content"></textarea>
+        </div>
+          
+          <div class="form-group" show-errors>
+          <label class="control-label" for="quantity">Quantity</label>
+          <input name="quantity" type="text" ng-model="vm.inventory.quantity" id="quantity" class="form-control" placeholder="Quantity" required >
+          <div ng-messages="vm.form.inventoryForm.quantity.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Inventory quantity is required.</p>
+          </div>
+          </div>
+          
+         <div class="form-group" show-errors>
+          <label class="control-label" for="price">Price</label>
+          <input name="price" type="text" ng-model="vm.inventory.price" id="price" class="form-control" placeholder="Price" required >
+          <div ng-messages="vm.form.inventoryForm.price.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Inventory price is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.inventory._id ? 'Update' : 'Create'}}</button> <a class="btn btn-default" role="button" ui-sref="admin.inventories.list">Cancel</a>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>

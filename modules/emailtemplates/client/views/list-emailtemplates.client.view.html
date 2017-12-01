@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <h1>Emailtemplates</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="emailtemplate in vm.emailtemplates" ui-sref="emailtemplates.view({ emailtemplateId: emailtemplate._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="emailtemplate.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="emailtemplate.user" ng-bind="emailtemplate.user.displayName"></span>
+        <span ng-if="!emailtemplate.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="emailtemplate.title"></h4>
+      <p class="list-group-item-text" ng-bind="emailtemplate.content"></p>
+    </a>
+  </div>
+</section>

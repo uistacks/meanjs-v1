@@ -1,0 +1,71 @@
+
+<style>
+
+
+    .angular-google-map-container { height: 100vh; }
+</style>
+
+
+
+<div class="dashboard-content fullHt">
+    <div class="dash-board-title">Completed Service Details <a href="/book/jobs/completed-services">Back</a></div>
+    <div class="dash-info-outers">
+        <form class="form-horizontal border-boters">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Customer</label>
+                <div class="col-sm-10">{{vm.jobDetail.user.displayName}}</div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Service</label>
+                <div class="col-sm-10">{{vm.jobDetail.service.title}}</div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Service Type</label>
+                <div class="col-sm-10">{{(vm.jobDetail.serviceType==1)?'One Time':'Recurring'}}</div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Service Booking Type</label>
+                <div class="col-sm-10">{{vm.jobDetail.bookServiceType==1?'Now':'Schedule'}}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Description</label>
+                <div class="col-sm-10">{{vm.jobDetail.workDescription}}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Requested On</label>
+                <div class="col-sm-10">{{vm.jobDetail.created| date:'MM/dd/y hh:mm:ss'}}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Status</label>
+                
+                <div class="col-sm-10">
+                    Completed
+                </div>
+            </div>
+
+
+
+       <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Address</label>
+        <div class="list-group">
+            <div id="map_canvas">
+                <ui-gmap-google-map  
+                    center='vm.map.center' 
+                    zoom='vm.map.zoom' aria-label="Google map" >
+                    <ui-gmap-marker  ng-repeat="marker in vm.marker "
+                        coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                        <ui-gmap-window>
+                            <div>{{marker.window.title}}</div>
+                        </ui-gmap-window>
+                    </ui-gmap-marker>
+                </ui-gmap-google-map>
+            </div>
+
+        </div>
+       </div>
+              </form>
+    </div>
+</div>

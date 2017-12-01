@@ -1,0 +1,66 @@
+<section>
+  <div class="page-header">
+    <h1>Manage Services</h1>
+  </div>
+  <div class="pull-right">
+    <a ng-show="vm.service._id" class="btn btn-danger" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i> Delete this service
+    </a>
+  </div>
+  <span class="clearfix"></span>
+  <div class="row">
+  <div class="col-md-10 col-md-offset-1"><div class="x_panel">
+    <div class="x_title">
+      <h3>{{vm.service._id ? 'Update Service' : 'Add New Service'}} <small>Use below form to change the fields</small></h3>
+    </div>
+    <div class="x_content">
+    <form name="vm.form.serviceForm" class="form-horizontal" ng-submit="vm.save(vm.form.serviceForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="area">Choose Area</label>
+          <select name="area" id="area" ng-model="vm.service.area" ng-change="setAreaServiceTypes(true)" class="form-control" required>
+            <option ng-repeat="area in vm.areas" value="{{area._id}}">{{area.title}}</option>
+          </select>
+          <div ng-messages="vm.form.serviceForm.area.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Area is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="servicetype">Choose Service Type</label>
+          <select name="servicetype" id="servicetype" ng-model="vm.service.servicetype" ng-change="setServiceSubTypes(true)" class="form-control" required>
+            <option ng-repeat="areaServiceType in vm.areaServiceTypes" value="{{areaServiceType._id}}">{{areaServiceType.title}}</option>
+          </select>
+          <div ng-messages="vm.form.serviceForm.servicetype.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Service Type is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="servicesubtype">Choose Service Sub Type</label>
+          <select name="servicesubtype" id="servicesubtype" ng-model="vm.service.servicesubtype" class="form-control" required>
+            <option ng-repeat="areaServiceSubType in vm.areaServiceSubTypes" value="{{areaServiceSubType._id}}">{{areaServiceSubType.title}}</option>
+          </select>
+          <div ng-messages="vm.form.serviceForm.servicesubtype.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Service Sub Type is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Title</label>
+          <input name="title" type="text" ng-model="vm.service.title" id="title" class="form-control" placeholder="Title" required autofocus>
+          <div ng-messages="vm.form.serviceForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Service title is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">Service Description</label>
+          <textarea class="form-control" name="content" data-ng-model="vm.service.content" id="content"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.service._id ? 'Update' : 'Create'}}</button> <a class="btn btn-default" role="button" ui-sref="admin.services.list">Cancel</a>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+	<div class="dash-left-pannel" ng-controller="DashboardController as vm">
+    	<div class="dash-user-info">
+        	<img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="user-profile"/>
+            <h2>{{vm.user.firstName}} {{vm.user.lastName}}</h2>
+            
+        </div>
+        <div class="dash-navigations-left">
+        	<ul ng-if="vm.authentication.user.roles[0] == 'user'">
+            	<li ui-sref-active='active'><a ui-sref='dashboard.profile'><i class="fa fa-user"></i> My Profile</a></li>
+            	<li class="msg-click"><a href="javascript:void(0)"><i class="fa fa-envelope-o"></i> Messaging Center</a></li>
+            	<li><a href="javascript:void(0)"><i class="fa fa-adjust"></i> Address Book</a></li>
+            	<li><a href="javascript:void(0)"><i class="fa fa-suitcase"></i> Jobs Overview</a></li>
+                <li ui-sref-active='active' ><a ui-sref="book.ongoingServices"><i class="fa fa-envelope-o"></i> Ongoing Services</a></li>
+            	<li ui-sref-active='active'><a ui-sref="book.completedServices"><i class="fa fa-envelope-o"></i> Completed Services</a></li>
+            	<li><a href="javascript:void(0)"><i class="fa fa-legal"></i> Recent Technicians</a></li>
+            	<li><a href="javascript:void(0)"><i class="fa fa-credit-card"></i> Payment History</a></li>
+                <li class="msg-click"><a href="/api/auth/signout" target="_self"><i class="fa fa-envelope-o"></i> Logout</a></li>
+                 </ul>
+            
+        	<ul ng-if="vm.authentication.user.roles[0] == 'technician'">
+            	<li ui-sref-active='active'><a ui-sref='dashboard.profile'><i class="fa fa-user"></i> My Profile</a></li>
+            	<li ><a href="javascript:void(0)"><i class="fa fa-envelope-o"></i> Job Request</a></li>
+            	<li ui-sref-active='active' ><a ui-sref="book.ongoingJobs"><i class="fa fa-envelope-o"></i> Ongoing Jobs</a></li>
+            	<li ui-sref-active='active'><a ui-sref="book.completedJobs"><i class="fa fa-envelope-o"></i> Completed Jobs</a></li>
+            	<li class="msg-click"><a href="javascript:void(0)"><i class="fa fa-envelope-o"></i> Messaging Center</a></li>
+            	<li class="msg-click"><a href="javascript:void(0)"><i class="fa fa-envelope-o"></i> Salary</a></li>
+            	<li class="msg-click"><a href="javascript:void(0)"><i class="fa fa-envelope-o"></i> Set Status</a></li>
+            	<li class="msg-click"><a href="javascript:void(0)"><i class="fa fa-envelope-o"></i> Inventory</a></li>
+            	<li class="msg-click"><a href="javascript:void(0)"><i class="fa fa-envelope-o"></i> Working Hours and Leaves</a></li>
+            	<li class="msg-click"><a href="javascript:void(0)"><i class="fa fa-envelope-o"></i> Notification</a></li>
+                <li class="msg-click"><a href="/api/auth/signout" target="_self"><i class="fa fa-envelope-o"></i> Logout</a></li>
+                
+                 </ul>
+        </div>
+    </div>

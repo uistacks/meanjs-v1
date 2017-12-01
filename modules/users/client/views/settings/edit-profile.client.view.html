@@ -1,0 +1,55 @@
+            <div class="dashboard-content fullHt">
+                <div class="dash-board-title">Edit Profile</div>
+                <div class="dash-info-outers">
+    <form name="vm.userForm" ng-submit="vm.updateUserProfile(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName" placeholder="First Name" required autofocus>
+          <div ng-messages="vm.userForm.firstName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">First name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName" placeholder="Last Name" required>
+          <div ng-messages="vm.userForm.lastName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Last name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="lastName">Mobile No</label>
+          <input type="text" id="mobileNo" name="mobileNo" class="form-control" ng-model="vm.user.mobileNo" placeholder="Mobile No" >
+        </div>
+        <div class="form-group" show-errors>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" ng-model="vm.user.email" placeholder="Email" lowercase disabled>
+          <div ng-messages="vm.userForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email address is required.</p>
+            <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username" placeholder="Username" lowercase required>
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Username is required.</p>
+          </div>
+        </div>
+
+          <div class="form-group"  ng-if="vm.user.roles[0]=='technician'">
+              <label >Skills:</label>
+        <div ng-repeat="service in vm.services">
+            <input type="checkbox" name="skills[]" ng-model="userSkills.selected[service._id]" ng-true-value="'Y'" ng-false-value="''" ng-checked="{{vm.user.serviceSkills.indexOf(service._id)!=-1}}">{{service.title}}
+        </div>
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn">Save Profile</button>
+
+
+        </div>
+      </fieldset>
+    </form>
+                </div>
+                </div>
+

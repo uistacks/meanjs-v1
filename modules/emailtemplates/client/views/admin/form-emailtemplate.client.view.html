@@ -1,0 +1,56 @@
+<section>
+  <div class="page-header">
+    <h1>Manage Email Templates</h1>
+  </div>
+  <div class="pull-right">
+    <a ng-show="vm.emailtemplate._id" class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div class="row">
+  <div class="col-md-10 col-md-offset-1"><div class="x_panel">
+    <div class="x_title">
+      <h3>{{vm.emailtemplate._id ? 'Update Email Template' : 'Add New Email Template'}} <small>Use below form to change the fields</small></h3>
+    </div>
+    <div class="x_content">
+    <form name="vm.form.emailtemplateForm" class="form-horizontal" ng-submit="vm.save(vm.form.emailtemplateForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Subject</label>
+          <input name="title" type="text" ng-model="vm.emailtemplate.title" id="title" class="form-control" placeholder="Subject" required autofocus>
+          <div ng-messages="vm.form.emailtemplateForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email Template subject is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Unique Key</label>
+          <input name="slug" type="text" ng-readonly="vm.emailtemplate._id" ng-model="vm.emailtemplate.slug" id="slug" class="form-control" placeholder="Unique Key" required />
+          <div ng-messages="vm.form.emailtemplateForm.slug.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email Template unique key is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="content">Email Template Content</label>
+          <wysiwyg-edit content="vm.emailtemplate.content" ></wysiwyg-edit>
+          <input type="hidden" name="content" data-ng-model="vm.emailtemplate.content" id="content" required></input>
+          <div ng-messages="vm.form.emailtemplateForm.content.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email Template content is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="smsText">SMS content</label>
+          <textarea class="form-control" rows="15" name="smsText" id="smsText" ng-model="vm.emailtemplate.smsText" required></textarea>
+          <div ng-messages="vm.form.emailtemplateForm.smsText.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email Template SMS Content is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.emailtemplate._id ? 'Update' : 'Create'}}</button> <a class="btn btn-default" role="button" ui-sref="admin.emailtemplates.list">Cancel</a>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>

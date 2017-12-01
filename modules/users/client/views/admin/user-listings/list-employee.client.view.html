@@ -1,0 +1,61 @@
+<section>
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>Manage Employees</h1>
+      </div>
+      <div class="col-md-4 col-md-offset-2" style="margin-top: 2em">
+        <input class="form-control col-md-4" type="text" ng-model="vm.search" placeholder="Search" ng-change="vm.figureOutItemsToDisplay()" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a class="btn btn-dark btn-primary pull-right" ui-sref="admin.employee-create"><i class="fa fa-plus"></i> Create new Employee</a>
+    </div>
+  </div>
+  <div class="row">
+  <div class="col-md-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3>Employees <small>List of all employees</small></h3>
+      </div>
+      <div class="x_content">
+        <div ng-if="vm.pagedItems.length < 1" class="panel panel-info">
+          <div class="panel-heading">
+            <h4>No employees added yet! Why don't you create one?</h4>
+          </div>
+          <div class="panel-body">
+            <a role="button" class="btn btn-primary" ui-sref="admin.employee-create">Create new one</a>
+          </div>
+        </div>
+        <table ng-if="vm.pagedItems.length > 0" class="table table-striped jambo_table">
+          <thead>
+          <tr class="headings">
+            <th class="column-title">Name</th>
+            <th class="column-title">Email</th>
+            <th class="column-title">Mobile No</th>
+            <th class="column-title">Account Status</th>
+            <th class="column-title">Role</th>
+            <th class="column-title">Created On</th>
+            <th class="column-title">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="user in vm.pagedItems">
+            <td><span ng-bind="user.firstName"></span> <span ng-bind="user.lastName"></span></td>
+            <td><span ng-bind="user.email"></span></td>
+            <td><span ng-bind="user.mobileNo"></span></td>
+            <td><span ng-if="user.accountStatus == 'active'"><i class="fa fa-check-circle text-success"></i> Active</span> <span ng-if="user.accountStatus == 'inactive'"><i class="fa fa-exclamation-circle text-warning"></i> Inactive</span></td>
+            <td show-role-name="{{ user.roles[0] }}"></td>
+            <td>{{ user.created | date:"dd/MM/yyyy HH:mm" }}</td>
+            <td><a ui-sref="admin.employee-edit({userId: user._id})"><i class="fa fa-pencil-square-o"></i></a></td>
+          </tr>
+          </tbody>
+        </table>
+        <uib-pagination ng-if="vm.pagedItems.length > 0" boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength" ng-model="vm.currentPage" ng-change="vm.pageChanged()"></uib-pagination>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

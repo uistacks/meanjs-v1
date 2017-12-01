@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <h1>Areas</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="area in vm.areas" ui-sref="areas.view({ areaId: area._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="area.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="area.user" ng-bind="area.user.displayName"></span>
+        <span ng-if="!area.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="area.title"></h4>
+      <p class="list-group-item-text" ng-bind="area.content"></p>
+    </a>
+  </div>
+</section>

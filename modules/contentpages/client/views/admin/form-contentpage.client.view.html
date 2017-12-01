@@ -1,0 +1,49 @@
+<section>
+  <div class="page-header">
+    <h1>Manage Content Pages</h1>
+  </div>
+  <div class="pull-right">
+    <a ng-show="vm.contentpage._id" class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div class="row">
+  <div class="col-md-10 col-md-offset-1"><div class="x_panel">
+    <div class="x_title">
+      <h3>{{vm.contentpage._id ? 'Update Content Page' : 'Add New Content Page'}} <small>Use below form to change the fields</small></h3>
+    </div>
+    <div class="x_content">
+    <form name="vm.form.contentpageForm" class="form-horizontal" ng-submit="vm.save(vm.form.contentpageForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Subject</label>
+          <input name="title" type="text" ng-model="vm.contentpage.title" id="title" class="form-control" placeholder="Subject" required autofocus>
+          <div ng-messages="vm.form.contentpageForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Title is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Unique Key</label>
+          <input name="slug" type="text" ng-readonly="vm.contentpage._id" ng-model="vm.contentpage.slug" id="slug" class="form-control" placeholder="Unique Key" required />
+          <div ng-messages="vm.form.contentpageForm.slug.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Unique key is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="content">Email Template Content</label>
+          <wysiwyg-edit content="vm.contentpage.content" ></wysiwyg-edit>
+          <input type="hidden" name="content" data-ng-model="vm.contentpage.content" id="content" required></input>
+          <div ng-messages="vm.form.contentpageForm.content.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Content is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.contentpage._id ? 'Update' : 'Create'}}</button> <a class="btn btn-default" role="button" ui-sref="admin.contentpages.list">Cancel</a>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>

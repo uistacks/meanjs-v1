@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <h1>Inventories</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="inventory in vm.inventories" ui-sref="inventories.view({ inventoryId: inventory._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="inventory.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="inventory.user" ng-bind="inventory.user.displayName"></span>
+        <span ng-if="!inventory.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="inventory.title"></h4>
+      <p class="list-group-item-text" ng-bind="inventory.content"></p>
+    </a>
+  </div>
+</section>

@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <h1>Bookingtimeslots</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="bookingtimeslot in vm.bookingtimeslots" ui-sref="bookingtimeslots.view({ bookingtimeslotId: bookingtimeslot._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="bookingtimeslot.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="bookingtimeslot.user" ng-bind="bookingtimeslot.user.displayName"></span>
+        <span ng-if="!bookingtimeslot.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="bookingtimeslot.title"></h4>
+      <p class="list-group-item-text" ng-bind="bookingtimeslot.content"></p>
+    </a>
+  </div>
+</section>

@@ -1,0 +1,259 @@
+
+<style>
+
+
+    .angular-google-map-container { height: 100vh; }
+</style>
+
+
+
+<div class="dashboard-content fullHt">
+    <div class="dash-board-title">Ongoing Job Details <a href="/book/jobs/ongoing">Back</a></div>
+    <div class="dash-info-outers">
+        <form class="form-horizontal border-boters">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Customer</label>
+                <div class="col-sm-10">{{vm.jobDetail.user.displayName}}</div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Service</label>
+                <div class="col-sm-10">{{vm.jobDetail.service.title}}</div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Service Type</label>
+                <div class="col-sm-10">{{(vm.jobDetail.serviceType==1)?'One Time':'Recurring'}}</div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Service Booking Type</label>
+                <div class="col-sm-10">{{vm.jobDetail.bookServiceType==1?'Now':'Schedule'}}</div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Description</label>
+                <div class="col-sm-10">{{vm.jobDetail.workDescription}}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Requested On</label>
+                <div class="col-sm-10">{{vm.jobDetail.created| date:'MM/dd/y hh:mm:ss'}}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Status</label>
+                <div class="col-sm-10" ng-if="vm.jobDetail.status[0] == 'notassigned'">
+                    <a  ng-click="vm.changeStatus('accepted', 'Are you sure you want to accept this booking?')">Accept</a>
+                    <a  ng-click="vm.changeStatus('rejected', 'Are you sure you want to reject this booking?')">Reject</a>
+                </div>
+                <div class="col-sm-10" ng-if="vm.jobDetail.status[0] != 'notassigned'">
+                  
+                  <span ng-if="vm.jobDetail.status[0]=='techcompleted'">Job Completed- Customer Approval Pending</span>
+                </div>
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='accepted'">
+                <span>Accepted</span>
+              </div>
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='rejected'">
+                <span>Rejected</span>
+              </div>
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='ontheway'">
+                <span>On the Way</span>
+              </div>
+
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='estimation'">
+                <button class="btn" type="button" onclick='jQuery("#estimation_popup").appendTo("body").modal("show")'>Estimation</button>
+              </div>
+
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='estimationpending'">
+                Estimation Approval Pending
+              </div>
+
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='estimationrejected'">
+                Estimation Rejected
+              </div>
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='estimationapproved'">
+                Estimation Approved
+              </div>
+
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='onjob'">
+                On Job
+              </div>
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='incomplete'">
+                Job Incomplete
+              </div>
+
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='custcompleted'">
+                Job Completed- Invoice Pending
+              </div>
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='invoice'">
+                Payment Pending
+              </div>
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='custpaid'">
+                Paid - Approval Pending
+              </div>
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='paidrejected'">
+                Paid Rejected
+              </div>
+
+              <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='completed'">
+                Completed
+              </div>
+
+
+              <!--if assigned-->
+              <select ng-if="vm.jobDetail.status[0] == 'assigned'" ng-model="vm.formStatus" ng-change="vm.changeStatus(vm.formStatus, 'Are you sure you want change the status?')">
+                <option value="" >Select status</option>
+                <option  ng-selected="vm.jobDetail.status[0] == 'accepted'" value="accepted">Accept</option>
+                <option  ng-selected="vm.jobDetail.status[0] == 'rejected'" value="rejected">Reject</option>
+              </select>
+
+
+              <!--if accepted-->
+              <select ng-if="vm.jobDetail.status[0] == 'accepted'" ng-model="vm.formStatus" ng-change="vm.changeStatus(vm.formStatus, 'Are you sure you want change the status?')">
+              <option value="" >Select status</option>
+              <option ng-selected="vm.jobDetail.status[0] == 'ontheway'" value="ontheway">On the Way</option>
+              </select>
+
+               <!--if ontheway -->
+
+              <select ng-if="vm.jobDetail.status[0] == 'ontheway'"  ng-model="vm.formStatus" ng-change="vm.changeStatus(vm.formStatus, 'Are you sure you want change the status?')">
+              <option value="" >Select status</option>
+              <option ng-if="vm.jobDetail.status[0]!='accepted'" ng-selected="vm.jobDetail.status[0] == 'estimation'" value="estimation">Estimation</option>
+              </select>
+
+
+              <!--if estimation approved-->
+              <select ng-if="vm.jobDetail.status[0] == 'estimationapproved'" ng-model="vm.formStatus" ng-change="vm.changeStatus(vm.formStatus, 'Are you sure you want change the status?')">
+              <option value="" >Select status</option>
+              <option ng-selected="vm.jobDetail.status[0] == 'onjob'" value="onjob">On Job</option>
+
+              </select>
+
+                <!--if on job-->
+
+              <select ng-if="vm.jobDetail.status[0] == 'onjob'" ng-model="vm.formStatus" ng-change="vm.changeStatus(vm.formStatus, 'Are you sure you want change the status?')">
+              <option value="" >Select status</option>
+              <option ng-selected="vm.jobDetail.status[0] == 'techcompleted'" value="techcompleted">Completed</option>
+              </select>
+
+              <!--if incomplete-->
+
+              <select ng-if="vm.jobDetail.status[0] == 'incomplete'" ng-model="vm.formStatus" ng-change="vm.changeStatus(vm.formStatus, 'Are you sure you want change the status?')">
+                <option value="" >Select status</option>
+                <option ng-selected="vm.jobDetail.status[0] == 'onjob'" value="onjob">On Job</option>
+                <option ng-selected="vm.jobDetail.status[0] == 'techcompleted'" value="techcompleted">Completed</option>
+              </select>
+
+                <!--<select ng-if="vm.jobDetail.status[0] != 'notassigned' && vm.jobDetail.status[0]!='rejected'" ng-model="vm.formStatus" ng-change="vm.changeStatus(vm.formStatus, 'Are you sure you want change the status?')">-->
+                    <!--<option value="" >Select status</option>-->
+                    <!--<option ng-if="vm.jobDetail.status[0]=='accepted'" ng-selected="vm.jobDetail.status[0] == 'ontheway'" value="ontheway">On the Way</option>-->
+                    <!--<option ng-if="vm.jobDetail.status[0]!='accepted'" ng-selected="vm.jobDetail.status[0] == 'estimation'" value="estimation">Estimation</option>-->
+                    <!--<option ng-if="vm.jobDetail.status[0]!='accepted'" ng-selected="vm.jobDetail.status[0] == 'onjob'" value="onjob">On Job</option>-->
+                    <!--<option ng-if="vm.jobDetail.status[0]!='accepted'" ng-selected="vm.jobDetail.status[0] == 'techcompleted'" value="techcompleted">Completed</option>-->
+                <!--</select>-->
+                <div class="col-sm-10" ng-if="vm.jobDetail.status[0] == 'ontheway'">
+                    <a target="_blank" href="http://maps.google.com/maps?saddr={{vm.marker[0].coords.latitude}},{{vm.marker[0].coords.longitude}}&daddr={{vm.marker[1].coords.latitude}},{{vm.marker[1].coords.longitude}}">Start Navigation</a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Address</label>
+                <div class="list-group">
+                    <div id="map_canvas">
+                        <ui-gmap-google-map
+                            center='vm.map.center'
+                            zoom='vm.map.zoom' aria-label="Google map" >
+                            <ui-gmap-marker  ng-repeat="marker in vm.marker"
+                                             coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                                <ui-gmap-window>
+                                    <div>{{marker.window.title}}</div>
+                                </ui-gmap-window>
+                            </ui-gmap-marker>
+                        </ui-gmap-google-map>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="estimation_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="madal-logo"><a href="javascript:void(0)">Prepare Estimation</a></div>
+      </div>
+      <div class="modal-body log-form-flds">
+
+          <form name="vm.estimationForm" ng-submit="vm.submitEstimation(vm.estimationForm.$valid)" class="form-horizontal border-boters" novalidate autocomplete="off">
+          <div class="row">
+            <label for="required_time" class="col-sm-2">Required Time</label>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="input" name="requiredHours" id="requiredHours" class="form-control" placeholder="Required hours" ng-model="vm.estimationData.requiredHours" required>
+              <div ng-messages=" vm.estimationSubmitted && vm.estimationForm.requiredHours.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Please enter required hours.</p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="input" class="form-control" id="requiredMinutes" name="requiredMinutes" placeholder="Required minutes" ng-model="vm.estimationData.requiredMinutes" required>
+              <div ng-messages="vm.estimationSubmitted && vm.estimationForm.requiredMinutes.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Please enter required minutes.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="required_cost">Required Cost</label>
+            <div class="col-sm-10">
+
+              <input id="requiredCost" name="requiredCost" type="input" class="form-control" placeholder="Cost" ng-model="vm.estimationData.requiredCost"   required>
+              <div ng-messages="vm.estimationSubmitted && vm.estimationForm.requiredCost.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Please enter cost.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="required_inventory">Required Inventory</label>
+          <div angucomplete-alt id="ex1"
+               placeholder="Search inventory"
+               maxlength="50"
+               pause="100"
+               selected-object="vm.selectedInventory"
+               local-data="vm.inventories"
+               search-fields="title"
+               title-field="title"
+               minlength="1"
+               input-class="form-control form-control-small"
+               match-class="highlight"></div>
+          </div>
+          <section class="input-group" >
+            <div ng-repeat="input in vm.model.arr track by $index">
+              <ng-form name="innerForm">
+            Item {{$index+1}}: {{input.title}}
+                <input class="form-control" type="text" name="qty"   ng-model="vm.model.arr[$index].qty" placeholder="Quantity required" required>
+              <div ng-messages="vm.estimationSubmitted && innerForm.qty.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Please enter quantity.</p>
+              </div>
+              </ng-form>
+            </div>
+          </section>
+          <!--<pre>{{vm.model | json}}</pre>-->
+
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <button type="submit"   class="btn btn-info"><i class="fa fa-location-arrow" ></i>Send Estimation</button>
+          </div>
+        </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <!--Back To <a href="javascript:void(0)">Log In</a>-->
+      </div>
+    </div>
+  </div>
+</div>

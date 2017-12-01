@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <h1>Contentpages</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="contentpage in vm.contentpages" ui-sref="contentpages.view({ contentpageId: contentpage._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="contentpage.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="contentpage.user" ng-bind="contentpage.user.displayName"></span>
+        <span ng-if="!contentpage.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="contentpage.title"></h4>
+      <p class="list-group-item-text" ng-bind="contentpage.content"></p>
+    </a>
+  </div>
+</section>

@@ -1,0 +1,439 @@
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByt5DJMtKjtRkHlhG1SoL9MzuG1mKgVfc&libraries=places"></script>
+<section class="inner-page-top-sec" style="background-image:url(/media/img/slide1.jpg);">
+  <div class="container">
+    <h2>Service Detail</h2>
+    <div class="page-bradcrums">
+      <ol class="breadcrumb">
+        <li><a href="javascript:void(0)">Home</a></li>
+        <li class="active">Service Detail</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<section class="service_check_out">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-md-12">
+
+            </div>
+        	<div class="col-md-12 col-sm-12 col-xs-12">
+            	<div class="schedule_an_appoinment">
+                	<div class="sub_heading">Book Your Service</div>
+                    <div class="select_date_blk">
+                    	<p>Select Date</p>
+                        <div class="choose_date">
+                        	<div id="choose_date_blk" class="choose_date owl-carousel">
+                            	<div class="item">
+                                	<div class="date_holder">
+                                    	<h6>4</h6>
+                                        <p>Sat</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                	<div class="date_holder">
+                                    	<h6>4</h6>
+                                        <p>Sat</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                	<div class="date_holder">
+                                    	<h6>4</h6>
+                                        <p>Sat</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                	<div class="date_holder">
+                                    	<h6>4</h6>
+                                        <p>Sat</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                	<div class="date_holder">
+                                    	<h6>4</h6>
+                                        <p>Sat</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                	<div class="date_holder">
+                                    	<h6>4</h6>
+                                        <p>Sat</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                	<div class="date_holder">
+                                    	<h6>4</h6>
+                                        <p>Sat</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                	<div class="date_holder">
+                                    	<h6>4</h6>
+                                        <p>Sat</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                	<div class="date_holder">
+                                    	<h6>4</h6>
+                                        <p>Sat</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                	<div class="date_holder">
+                                    	<h6>4</h6>
+                                        <p>Sat</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="personal_details">
+
+                    	<!--<div class="sub_heading">Book Your Service</div>-->
+                        <div class="personal_det_form">
+                        	<form class="personal_details_frm signin" name="vm.serviceRequirmentForm" ng-submit="vm.serviceRequirment(vm.serviceRequirmentForm.$valid)" novalidate autocomplete="off" novalidate enctype='multipart/form-data'>
+                            	<div class="row">
+                                	<div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group my-inp">
+                                        	<label>Service Name</label>
+                                            <input readonly type="text" id="service_title" name="service_title" class="form-control"
+                              ng-model="vm.service.title" required autofocus>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group my-inp">
+                                        	<label>Service Location</label>
+                                            <input data-toggle="modal" data-target="#location_popup" readonly type="text" id="user_location"
+                     name="user_location" class="form-control" ng-model="vm.location" required autofocus />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group my-inp">
+                                        	<label>Work Description</label>
+                                            <textarea type="text" id="workDescription" name="workDescription" class="form-control"
+                     ng-model="vm.service_requirments.workDescription" placeholder="Work Description" required
+                     autofocus> </textarea>
+                                        </div>
+                                    </div>
+                                    <!--<div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group my-inp">
+                                            <input type="text" class="form-control" placeholder="Building, House, Flat No."/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group my-inp">
+                                            <input type="text" class="form-control" placeholder="Landmark"/>
+                                        </div>
+                                    </div>-->
+                                </div>
+                            </form>
+                        </div>
+                        <div class="Prompt_code">
+                        	<form class="prompt_code_frm">
+                            	<div class="row">
+                                	<div class="col-md-12">
+                                        <div class="input-group form-group my-inp no-margin">
+                                            <!--<input type="text" class="form-control" placeholder="Enter Your Promo code" name="search">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default" type="submit">Apply</button>
+                                            </div>-->
+                                            <button class="submit_btn" ngf-multiple="true" class="" ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                                                  ng-model="vm.service_requirments.picFile" accept="image/*"
+                                                  ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
+                                                  ngf-resize-if="$width > 400 || $height > 400">Select Picture
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="log_registration_blk">
+                    	<form name="vm.serviceRequirmentForm" ng-submit="vm.serviceRequirment(vm.serviceRequirmentForm.$valid)"
+                  class="signin" novalidate autocomplete="off" novalidate enctype='multipart/form-data'>
+                        	<div class="row">
+                            	<div class="col-md-12"><label class="label-head">Service Type:</label></div>
+                            	<div class="col-md-6 col-sm-6 col-xs-12">
+                                
+                                	<div class="form-group label_font-weight">
+                                    	<label class="cust_radio">One Time Service
+                                        	<input type="radio" name="service_type" ng-value="1" ng-model="vm.service_requirments.serviceType" required>
+                                        	<span class="checkmark"></span>                                        
+                     					</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                	<div class="form-group label_font-weight">
+                                        <label class="cust_radio"><input type="radio" name="service_type" ng-value="2" ng-model="vm.service_requirments.serviceType" required>Recurring Service
+                                        	<span class="checkmark"></span> 
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                	<div ng-if="submitted || vm.serviceRequirmentForm.service_type.$dirty">
+                                        <div ng-messages="vm.serviceRequirmentForm.service_type.$error" role="alert">
+                                          <p class="help-block error-text" ng-message="required">Service type is required.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                	<div ng-if="vm.service_requirments.serviceType == '2'">
+										<div class="row">
+                                        	<div class="col-md-4 col-sm-4 col-xs-12">
+                                            	<div class="form-group label_font-weight">
+                                                    <label class="cust_radio"><input type="radio" name="recurring_type" ng-value="1" ng-model="vm.service_requirments.recurringType" required>Weekly
+                                                    	<span class="checkmark"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                            	<div class="form-group label_font-weight">
+                                                    <label class="cust_radio"><input type="radio" name="recurring_type" ng-value="2" ng-model="vm.service_requirments.recurringType" required>Monthly
+                                                    	<span class="checkmark"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                            	<div class="form-group label_font-weight">
+                                                    <label class="cust_radio"><input type="radio" name="recurring_type" ng-value="3" ng-model="vm.service_requirments.recurringType" required>Yearly
+                                                    	<span class="checkmark"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                            				<div class="col-md-12">
+                                            	<div class="form-group">
+                                                    <div ng-if="submitted || vm.serviceRequirmentForm.recurring_type.$dirty">
+                                                      <div ng-messages="vm.serviceRequirmentForm.recurring_type.$error" role="alert">
+                                                        <p class="help-block error-text" ng-message="required">Recurring service type is required.</p>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                	<div ng-if="vm.service_requirments.serviceType">
+                                		<div class="row">
+                                            <div class="col-md-12"><label>Book Service:</label></div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                            	<div class="form-group label_font-weight">
+                                                	<label class="cust_radio"><input type="radio" name="book_service" ng-value="1" ng-model="vm.service_requirments.bookService" ng-click="vm.checkAvailableTech(vm.service._id)" required> Now
+                                                    	<span class="checkmark"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                            	<div class="form-group label_font-weight">
+                                                	<label class="cust_radio"><input type="radio" name="book_service" ng-value="2" ng-model="vm.service_requirments.bookService" required> Schedule
+                                                    	<span class="checkmark"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                            	<div class="form-group">
+                                                    <div ng-if="submitted || vm.serviceRequirmentForm.book_service.$dirty">
+                                                      <div ng-messages="vm.serviceRequirmentForm.book_service.$error" role="alert">
+                                                        <p class="help-block error-text" ng-message="required">Book service type is required.</p>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                            	<div class="form-group">
+                                                    <div ng-if="vm.duration">
+                                                    <span class="distance_calculator">ETA : {{vm.distance}} in {{vm.duration}}<sapn>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      <div class="col-md-12" ng-if="vm.location == 'N/A'">
+                                            	<div class="form-group">
+                                                    <div class="serviceLocationError danger">
+                                                    <span>Kindly select your service location.<sapn>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                	<div ng-if="vm.service_requirments.bookService == '2'">
+                                       <!-- Select Time:
+                                        <ul>
+                                          <li ng-repeat="n in vm.arr_time_slots label_font-weight">
+                                            <label><input type="radio" name="booking_time" ng-value="n" ng-model="vm.service_requirments.bookingTime">
+                                            {{n}}</label>
+
+                                          </li>
+                                          <div class="input-group date datePicker" data-max-date="1 days">
+                                            <input type="text" id="dob" name="dob" update-ng-model-on-blur="" class="form-control"
+                                                   placeholder="" required/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                          </div>
+                                        </ul>
+                                        Select Day:-->
+
+                                        <ul>
+                                          <li ng-repeat="day in vm.booking_dates">{{ day | date:"dd/MM/yyyy HH:mm" }} {{new Date(day)}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                	<button ng-if="vm.submit_flag==1" type="submit" class="submit_btn">Submit</button>
+                                      {{vm.service_requirments.recurringType}}
+                                      {{vm.BookingTimeSlot.minDurationType}}
+                                      {{vm.standardWorkHour.from_time| date:"HH:mm"}}
+                                      {{vm.standardWorkHour.to_time| date:"HH:mm"}}
+
+                                      <div class="clearfix cust-checker">
+
+
+                                      </div>
+                                      <img ng-if="vm.loader==1" src="/media/img/loaders/load.gif" width="100px" height="70px">
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cart_items_blk">
+        <div class="sub_heading">Available technicians in your area</div>
+        <div class="locator_map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120976.49935707629!2d73.72210336883155!3d18.640844847670596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b8377fbdeab3%3A0x2c4265dab1a7a0f8!2sPimpri-Chinchwad%2C+Maharashtra!5e0!3m2!1sen!2sin!4v1511767604921" width="100%" height="600px" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+<section class="log-reg-sec">
+  <div class="popup-outer">
+    <div class="">
+      <div class="modal-dialog1">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="madal-logo"><a href="javascript:void(0)"><img src="/media/img/modal-logo.png" alt="site Logo"/></a>
+            </div>
+          </div>
+          <div class="modal-body log-form-flds col-md-8">
+
+            <form name="vm.serviceRequirmentForm" ng-submit="vm.serviceRequirment(vm.serviceRequirmentForm.$valid)"
+                  class="signin" novalidate autocomplete="off" novalidate enctype='multipart/form-data'>
+
+
+              Service: <input readonly type="text" id="service_title" name="service_title" class="form-control"
+                              ng-model="vm.service.title" required autofocus>
+              Address:
+              <input data-toggle="modal" data-target="#location_popup" readonly type="text" id="user_location"
+                     name="user_location" class="form-control" ng-model="vm.location" required autofocus>
+              Work Description
+              <input type="text" id="workDescription" name="workDescription" class="form-control"
+                     ng-model="vm.service_requirments.workDescription" placeholder="Work Description" required
+                     autofocus>
+
+              <div ng-if="submitted || vm.serviceRequirmentForm.workDescription.$dirty">
+                <div ng-messages="vm.serviceRequirmentForm.workDescription.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">Work description is required.</p>
+                </div>
+              </div>
+
+              <button ngf-multiple="true" class="" ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                      ng-model="vm.service_requirments.picFile" accept="image/*"
+                      ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
+                      ngf-resize-if="$width > 400 || $height > 400">Select Picture
+              </button>
+              <ul>
+                <li ng-repeat="f in vm.service_requirments.picFile" style="font:smaller">
+                  <img ngf-src="f" width="100px" height="100px" ngf-drop>
+                </li>
+              </ul>
+
+              Service Type:
+
+              <input type="radio" name="service_type" ng-value="1" ng-model="vm.service_requirments.serviceType"
+                     required>One Time Service
+              <input type="radio" name="service_type" ng-value="2" ng-model="vm.service_requirments.serviceType"
+                     required>Recurring Service
+              <div ng-if="submitted || vm.serviceRequirmentForm.service_type.$dirty">
+                <div ng-messages="vm.serviceRequirmentForm.service_type.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">Service type is required.</p>
+                </div>
+              </div>
+              <div ng-if="vm.service_requirments.serviceType == '2'">
+
+                <input type="radio" name="recurring_type" ng-value="1" ng-model="vm.service_requirments.recurringType"
+                       required>Weekly
+                <input type="radio" name="recurring_type" ng-value="2" ng-model="vm.service_requirments.recurringType"
+                       required>Monthly
+                <input type="radio" name="recurring_type" ng-value="3" ng-model="vm.service_requirments.recurringType"
+                       required>Yearly
+
+                <div ng-if="submitted || vm.serviceRequirmentForm.recurring_type.$dirty">
+                  <div ng-messages="vm.serviceRequirmentForm.recurring_type.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Recurring service type is required.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div ng-if="vm.service_requirments.serviceType">
+                Book Service:
+                <input type="radio" name="book_service" ng-value="1" ng-model="vm.service_requirments.bookService"
+                       ng-click="vm.checkAvailableTech(vm.service._id)" required>Now
+                <input type="radio" name="book_service" ng-value="2" ng-model="vm.service_requirments.bookService"
+                       required> Schedule
+
+                <div ng-if="submitted || vm.serviceRequirmentForm.book_service.$dirty">
+                  <div ng-messages="vm.serviceRequirmentForm.book_service.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Book service type is required.</p>
+                  </div>
+                </div>
+
+                <div ng-if="vm.duration">
+                ETA : {{vm.distance}} in {{vm.duration}}
+                </div>
+              </div>
+              <div ng-if="vm.service_requirments.bookService == '2'">
+                Select Time:
+                <ul>
+                  <li ng-repeat="n in vm.arr_time_slots">
+                    <input type="radio" name="booking_time" ng-value="n" ng-model="vm.service_requirments.bookingTime">
+                    {{n}}
+
+                  </li>
+                  <div class="input-group date datePicker" data-max-date="1 days">
+                    <input type="text" id="dob" name="dob" update-ng-model-on-blur="" class="form-control"
+                           placeholder="" required/>
+                    <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                  </div>
+                </ul>
+                Select Day:
+
+                <ul>
+                  <li ng-repeat="day in vm.booking_dates">{{ day | date:"dd/MM/yyyy HH:mm" }} {{new Date(day)}}</li>
+                </ul>
+              </div>
+              <button ng-if="vm.submit_flag==1" type="submit" class="btn btn-blue btn-small">Submit</button>
+              {{vm.service_requirments.recurringType}}
+              {{vm.BookingTimeSlot.minDurationType}}
+              {{vm.standardWorkHour.from_time| date:"HH:mm"}}
+              {{vm.standardWorkHour.to_time| date:"HH:mm"}}
+
+              <div class="clearfix cust-checker">
+
+
+              </div>
+            </form>
+            <img ng-if="vm.loader==1" src="/media/img/loaders/load.gif" width="100px" height="70px">
+          </div>
+          <div class="modal-footer">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <h1>Servicecharges</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="servicecharge in vm.servicecharges" ui-sref="servicecharges.view({ servicechargeId: servicecharge._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="servicecharge.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="servicecharge.user" ng-bind="servicecharge.user.displayName"></span>
+        <span ng-if="!servicecharge.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="servicecharge.title"></h4>
+      <p class="list-group-item-text" ng-bind="servicecharge.content"></p>
+    </a>
+  </div>
+</section>

@@ -1,0 +1,49 @@
+﻿<div class="page-header">
+  <div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4 col-md-offset-4" style="margin-top: 2em">
+      <input class="form-control col-md-4" type="text" ng-model="vm.search" placeholder="Search" ng-change="vm.figureOutItemsToDisplay()" />
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h1>Manage Skills <a class="btn btn-round btn-primary pull-right" title="Click to add new skill" ui-sref="admin.skills.create"><i class="fa fa-plus"></i></a>
+          <span class="clearfix"></span>
+        </h1>
+
+      </div>
+      <div class="x_content">
+        <div ng-if="vm.pagedItems.length < 1" class="panel panel-info">
+          <div class="panel-heading">
+            <h4>No skills added yet!</h4>
+          </div>
+          <div class="panel-body">
+            <a role="button" class="btn btn-primary" ui-sref="admin.skills.create" title="Click to add new skill">Create new one</a>
+          </div>
+        </div>
+        <table ng-if="vm.pagedItems.length > 0" class="table table-striped jambo_table">
+          <thead>
+          <tr class="headings">
+            <th class="column-title">Name</th>
+            <th class="column-title" width="35%">Created On</th>
+            <th class="column-title" width="10%">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="skill in vm.pagedItems">
+            <td><span ng-bind="skill.title"></span> </td>
+            <td>{{ skill.created | date:"dd/MM/yyyy HH:mm" }}</td>
+            <td><a ui-sref="admin.skills.edit({skillId: skill._id})"> <i class="fa fa-pencil-square-o"></i></a></td>
+          </tr>
+          </tbody>
+        </table>
+        <uib-pagination ng-if="vm.pagedItems.length > 0" boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength" ng-model="vm.currentPage" ng-change="vm.pageChanged()"></uib-pagination>
+      </div>
+    </div>
+  </div>
+</div>

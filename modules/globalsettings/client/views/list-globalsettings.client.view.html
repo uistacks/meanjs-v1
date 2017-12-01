@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <h1>Globalsettings</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="globalsetting in vm.globalsettings" ui-sref="globalsettings.view({ globalsettingId: globalsetting._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="globalsetting.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="globalsetting.user" ng-bind="globalsetting.user.displayName"></span>
+        <span ng-if="!globalsetting.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="globalsetting.title"></h4>
+      <p class="list-group-item-text" ng-bind="globalsetting.content"></p>
+    </a>
+  </div>
+</section>

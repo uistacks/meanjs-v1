@@ -1,0 +1,38 @@
+<section>
+  <div class="page-header">
+    <h1>Manage Departments</h1>
+  </div>
+  <div class="pull-right">
+    <a ng-show="vm.department._id" class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div class="row">
+  <div class="col-md-10 col-md-offset-1"><div class="x_panel">
+    <div class="x_title">
+      <h3>{{vm.department._id ? 'Update Department' : 'Add New Department'}} <small>Use below form to change the fields</small></h3>
+    </div>
+    <div class="x_content">
+    <form name="vm.form.departmentForm" class="form-horizontal" ng-submit="vm.save(vm.form.departmentForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Title</label>
+          <input name="title" type="text" ng-model="vm.department.title" id="title" class="form-control" placeholder="Title" required autofocus>
+          <div ng-messages="vm.form.departmentForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Department title is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">Department Description</label>
+          <textarea class="form-control" name="content" data-ng-model="vm.department.content" id="content"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.department._id ? 'Update' : 'Create'}}</button> <a class="btn btn-default" role="button" ui-sref="admin.departments.list">Cancel</a>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>

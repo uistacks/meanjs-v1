@@ -1,0 +1,295 @@
+
+<div ng-controller="HomeHeaderController as vm">
+
+    <nav class="custom-nav clearfix">
+        <div class="logo"><a href="javascript:void(0)" onclick="window.location = '/'"><img src="/media/img/logo.png" alt="site-logo"/> </a></div>
+        <div class="inner-head">
+
+            <div class="top-head clearfix">
+                <ul class="pull-left">
+                    <li><a href="javascript:void(0)"><i class="fa fa-facebook-f"></i></a></li>
+                    <li><a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="javascript:void(0)"><i class="fa fa-pinterest-p"></i></a></li>
+                    <li><span>Support?</span> CALL: 0900 800 900</li>
+
+                </ul>
+
+                    <div class="dash-nav home-header-nav">
+
+        <ul>
+            <li><a href="javascript:void(0)"><i class="fa fa-globe"></i> عربى</a></li>
+            <li ng-show="vm.authentication.user" class="status-dash"><a href="javascript:void(0)">{{vm.authentication.user.displayName}} <span><img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="profile"/></span> </a>
+                <ul class="inters-details">
+                    <li><a ui-sref="dashboard.profile" target="_self">Profile <i class="fa fa-user"></i></a></li>
+                    <li><a ui-sref="settings.profile" target="_self">Edit Profile <i class="fa fa-cog"></i></a></li>
+                    <li><a ui-sref="settings.picture" target="_self">Edit Profile Picture<i class="fa fa-cogs"></i></a></li>
+                    <li><a ui-sref="settings.password" target="_self">Change Password <i class="fa fa-cogs"></i></a></li>
+                    <li><a href="/api/auth/signout" target="_self">Logout <i class="fa fa-power-off"></i></a></li>
+                </ul>
+            </li>
+
+        </ul>
+    <ul  ng-hide="vm.authentication.user">
+      <li ui-sref-active="active">
+        <a ui-sref="authentication.signup" >Sign Up </a>
+      </li>
+      <li class="divider-vertical"></li>
+      <li ui-sref-active="active">
+        <a ui-sref="authentication.signin">Sign In</a>
+      </li>
+    </ul>
+    </div>
+                  <div class="location_blk pull-right" data-toggle="modal" data-target="#location_popup">
+                    <div class="input-group">
+                        <span class="input-group-addon"><img src="/media/img/location.png" alt="location icon"/></span>
+                        <input type="text" class="form-control" placeholder="Select Location" value="{{vm.updateLocation}}"  ng-bind="{{vm.updateLocation}}"/>
+                        <span class="input-group-addon"><img src="/media/img/edit.png" alt="edit icon"/></span>
+                    </div>
+                </div>
+            </div>
+            <div class="bot-head">
+                <ul>
+                    <li><a href="javascript:void(0)">Home</a></li>
+                    <li><a href="javascript:void(0)">About us</a></li>
+                    <li ><a href="javascript:void(0)" onclick='jQuery(".hm-search").click()'>Services</a></li>
+                    <li><a href="javascript:void(0)">Contact</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="search-header"><a href="javascript:void(0)" ><i ng-click="openSearchHeader()" class="hm-search"></i></a></div>
+        <div class="nav-open-btn">
+            <button class="btn">
+                <span class="lines"></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <div class="search-fix-caption" >
+        <div class="menu_bar_tab">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs text-center" role="tablist">
+                <li ng-repeat="(i,servicetype) in vm.serviceTypes"  ng-class="{active: i==0}" role="presentation" ><a href="#{{servicetype._id}}" aria-controls="{{servicetype._id}}" role="tab" data-toggle="tab">{{servicetype.title}}</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+<div class="tab-content">
+<div ng-repeat="(i,servicetype) in vm.serviceTypes" role="tabpanel" ng-class="{active: i==0}"  class="tab-pane" id="{{servicetype._id}}">
+    <div class="row">
+        <div class="col-md-2 col-sm-2" ng-repeat="servicesubtype in vm.serviceSubTypes" ng-if="servicesubtype.servicetype == servicetype._id">
+            <div class="menu_lsiting">
+                <ul>
+                    <li class="category_heading">{{servicesubtype.title}}</li>
+                    <li ng-if="service.servicesubtype== servicesubtype._id && vm.authentication.user!=null" onclick="jQuery('.search-header').click()" ng-repeat="service in vm.services" class="category_heading" ><a ui-sref="book.serviceDetail({serviceId:service._id})" >{{service.title}}</a></li>
+                    <li ng-if="service.servicesubtype== servicesubtype._id && vm.authentication.user==null" onclick='jQuery(".hm-search").click()' ng-repeat="service in vm.services" class="category_heading"><a href="javascript:void(0)" ng-click="vm.showLogin(service._id)" >{{service.title}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+    <section class="book_an_service_blk clearfix" style="background-color:rgba(0,0,0,0.6);">
+	<div class="book_pane_close"><a href="javascript:void(0)"><img src="/media/img/cross-one.png" alt="close"/></a></div>
+	<div class="booking_form_here pull-right">
+    	<div class="row">
+        	<div class="col-md-12">
+            	<div class="booking_info_here">
+                	<h3>Don't Worry... Just Home!</h3>
+                    <ul>
+                        <li>On Time: 90%</li>
+                        <li>Service Quality: 5/5</li>
+                        <li>Service Time: 4-5 hours</li>
+                        <li>Team Size: 3-4</li>
+                        <li>Pay after service: Cash/Online</li>
+                        <li>Usage Frequency: 4 months</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12">
+            	<div class="booking_form">
+                	<form class="book_order_form">
+                    	<div class="row">
+                        	<div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Location Here"/>
+                                    <span><i class="fa fa-location-arrow"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        	<div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Full Name"/>
+                                    <span><i class="fa fa-user"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        	<div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Email Id"/>
+                                    <span><i class="fa fa-envelope"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        	<div class="col-md-12 last">
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" placeholder="Contact Us"/>
+                                    <span><i class="fa fa-mobile-phone"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="select_dt_time">
+                            <p>Select Date & Time</p>
+                            <div id="h-calender" class="h-calender owl-carousel owl-theme">
+                                <div class="item"><a href="javascript:void(0)">Sat<span>04</span></a></div>
+                                <div class="item"><a href="javascript:void(0)">Sat<span>04</span></a></div>
+                                <div class="item"><a href="javascript:void(0)">Sat<span>04</span></a></div>
+                                <div class="item"><a href="javascript:void(0)">Sat<span>04</span></a></div>
+                                <div class="item"><a href="javascript:void(0)">Sat<span>04</span></a></div>
+                                <div class="item"><a href="javascript:void(0)">Sat<span>04</span></a></div>
+                            </div>
+                        </div>
+                        <div class="proceed-btn text-right">
+                            <button type="button" class="proceed_btn">Proceed <i class="fa fa-angle-right"></i></button>
+                        </div>
+                    </form>
+                    <div class="select_time">
+                    	<div class="select_dt_time">
+                            <p>Select Date & Time</p>
+                            <div id="h-calender-inner" class="h-calender owl-carousel owl-theme">
+                                <div class="item"><a href="javascript:void(0)">Sat<span>04</span></a></div>
+                                <div class="item"><a href="javascript:void(0)">Sat<span>04</span></a></div>
+                                <div class="item"><a href="javascript:void(0)">Sat<span>04</span></a></div>
+                                <div class="item"><a href="javascript:void(0)">Sat<span>04</span></a></div>
+                                <div class="item"><a href="javascript:void(0)">Sat<span>04</span></a></div>
+                                <div class="item"><a href="javascript:void(0)">Sat<span>04</span></a></div>
+                            </div>
+                        </div>
+                        <div class="select_my_time">
+                            <div id="sel_time" class="owl-carousel owl-theme">
+                                <div class="item">
+                                    <li><a href="javascript:void(0)">09:00 AM - 10:00 AM</a></li>
+                                    <li><a href="javascript:void(0)">10:00 AM - 11:00 AM</a></li>
+                                </div>
+                                <div class="item">
+                                    <li><a href="javascript:void(0)">11:00 AM - 12:00 PM</a></li>
+                                    <li><a href="javascript:void(0)">12:00 PM - 01:00 PM</a></li>
+                                </div>
+                                <div class="item">
+                                    <li><a href="javascript:void(0)">01:00 PM - 02:00 PM</a></li>
+                                    <li><a href="javascript:void(0)">02:00 PM - 03:00 PM</a></li>
+                                </div>
+                                <div class="item">
+                                    <li><a href="javascript:void(0)">03:00 PM - 04:00 PM</a></li>
+                                    <li><a href="javascript:void(0)">05:00 PM - 06:00 PM</a></li>
+                                </div>
+                                <div class="item">
+                                    <li><a href="javascript:void(0)">05:00 PM - 06:00 PM</a></li>
+                                    <li><a href="javascript:void(0)">07:00 PM - 08:00 PM</a></li>
+                                </div>
+                                <div class="item">
+                                    <li><a href="javascript:void(0)">07:00 PM - 08:00 PM</a></li>
+                                    <li><a href="javascript:void(0)">08:00 PM - 09:00 PM</a></li>
+                                </div>
+                            </div>
+                         </div>
+
+                    	<div class="view_date_time text-center">
+                        	<div class="row">
+                            	<div class="col-md-6">
+                                	<p>07 November, 10 : 00 AM</p>
+                                </div>
+                                <div class="col-md-6">
+                                	<button type="button" class="ok_btn btn-bk">Back</button>
+                                	<button type="button" class="ok_btn">Ok</button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <div class="modal fade" id="location_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="madal-logo"><a href="javascript:void(0)">Where do you want your service?</a></div>
+          </div>
+          <div class="modal-body log-form-flds">
+          		<div class="row">
+                    <div class="col-sm-12 text-center">
+                        <a ng-click="vm.getUserLocation(true)" href="javascript:void(0);" class="location_btn"><i class="fa fa-location-arrow" ></i> Get My Location</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h2 class="alternet_opt">OR </h2>
+                    </div>
+                </div>
+                <div class="row">
+                	<div class="col-md-12">
+                        <div class="input-group my_address">
+                            <input type="text" class="form-control" name="updateLocation" id="updateLocation" ng-model="vm.updateLocation"  placeholder="Select Location" />
+                            <span class="input-group-addon"><a href="javascript:void(0);" onclick='location.reload()' target='_self'>Save</a></span>
+                        </div>
+                    </div>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <!--Back To <a href="javascript:void(0)">Log In</a>-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="guest_or_login_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="madal-logo"><a href="javascript:void(0)">Kindly select below any option to book your service?</a></div>
+          </div>
+          <div class="modal-body log-form-flds">
+          		<div class="row">
+                    <div class="col-sm-12 text-center">
+                        <a ui-sref="authentication.signin" class="location_btn" onclick="jQuery('#guest_or_login_popup').modal('hide')"><i class="fa fa-location-arrow" ></i> Login</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h2 class="alternet_opt">OR </h2>
+                    </div>
+                </div>
+                       		<div class="row">
+                    <div class="col-sm-12 text-center">
+                        <a ui-sref="authentication.guest_user" onclick="jQuery('#guest_or_login_popup').modal('hide')"  class="location_btn"><i class="fa fa-location-arrow" ></i>Continue as Guest User</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h2 class="alternet_opt">OR </h2>
+                    </div>
+                </div>
+                       		<div class="row">
+                    <div class="col-sm-12 text-center">
+                        <a ui-sref="authentication.signup" onclick="jQuery('#guest_or_login_popup').modal('hide')"   class="location_btn"><i class="fa fa-location-arrow" ></i>Sign Up</a>
+                    </div>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <!--Back To <a href="javascript:void(0)">Log In</a>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+

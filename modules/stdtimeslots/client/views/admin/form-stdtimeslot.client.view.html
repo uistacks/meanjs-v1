@@ -1,0 +1,55 @@
+<style>
+  .angular-google-map-container { height: 400px; }
+  .searchboxInput {padding:5px; top:10px !important; width: 250px;}
+</style>
+<section>
+  <div class="page-header">
+    <h1>Manage Stdtimeslots</h1>
+  </div>
+  <div class="pull-right">
+   
+  </div>
+  <div class="row">
+  <div class="col-md-12"><div class="x_panel">
+    <div class="x_title">
+      <h3>{{vm.stdtimeslot._id ? 'Update Standard Work Time' : 'Add New Stdtimeslot'}} <small>Use below form to change the fields</small></h3>
+    </div>
+    <div class="x_content">
+    <form name="vm.form.stdtimeslotForm" class="form-horizontal" ng-submit="vm.save(vm.form.stdtimeslotForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Area</label>
+          <input readonly="" name="title" type="text" ng-model="vm.stdtimeslot.title" id="title" class="form-control" placeholder="Title" required autofocus>
+          <div ng-messages="vm.form.stdtimeslotForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Stdtimeslot title is required.</p>
+          </div>
+        </div>
+          
+          <input type="hidden" name="stdtime" value="1" ng-model="vm.stdtimeslot.stdtime">
+        
+         <div class="form-group" show-errors>
+          <label class="control-label" for="title">From Time</label>
+          <input  name="from" type="time" ng-model="vm.stdtimeslot.from_time" ng-bind="vm.stdtimeslot.from_time | date:'HH:mm:ss'" id="from_time" class="form-control" value="{{vm.stdtimeslot.from_time | date:'HH:mm:ss'}}"  required >
+          <div ng-messages="vm.form.stdtimeslotForm.from.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">From time is required.</p>
+          </div>
+        </div>
+        
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">To Time</label>
+          <input  name="to_time" type="time" ng-model="vm.stdtimeslot.to_time" id="to_time" value="{{vm.stdtimeslot.to_time | date:'HH:mm:ss'}}" class="form-control"  required >
+          <div ng-messages="vm.form.stdtimeslotForm.to_time.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">To time is required.</p>
+          </div>
+        </div>
+     
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.stdtimeslot._id ? 'Update' : 'Create'}}</button> <a class="btn btn-default" role="button" ui-sref="admin.stdtimeslots.list">Cancel</a>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>

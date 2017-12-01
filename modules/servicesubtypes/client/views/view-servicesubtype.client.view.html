@@ -1,0 +1,15 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.servicesubtype.title"></h1>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.servicesubtype.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.servicesubtype.user" ng-bind="vm.servicesubtype.user.displayName"></span>
+      <span ng-if="!vm.servicesubtype.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.servicesubtype.content"></p>
+</section>

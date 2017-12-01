@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <h1>Kpis</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="kpi in vm.kpis" ui-sref="kpis.view({ kpiId: kpi._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="kpi.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="kpi.user" ng-bind="kpi.user.displayName"></span>
+        <span ng-if="!kpi.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="kpi.title"></h4>
+      <p class="list-group-item-text" ng-bind="kpi.content"></p>
+    </a>
+  </div>
+</section>

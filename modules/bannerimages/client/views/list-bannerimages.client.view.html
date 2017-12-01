@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <h1>Bannerimages</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="bannerimage in vm.bannerimages" ui-sref="bannerimages.view({ bannerimageId: bannerimage._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="bannerimage.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="bannerimage.user" ng-bind="bannerimage.user.displayName"></span>
+        <span ng-if="!bannerimage.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="bannerimage.title"></h4>
+      <p class="list-group-item-text" ng-bind="bannerimage.content"></p>
+    </a>
+  </div>
+</section>

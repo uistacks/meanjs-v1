@@ -1,0 +1,46 @@
+<section class="inner-page-top-sec" style="background-image:url(/media/img/slide1.jpg);">
+	<div class="container">
+    	<h2>Login</h2>
+        <div class="page-bradcrums">
+        	<ol class="breadcrumb">
+              <li><a href="javascript:void(0)">Home</a></li>
+              <li class="active">Login</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<section class="log-reg-sec">
+	<div class="popup-outer">
+    	<div class="">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="madal-logo"><a href="javascript:void(0)"><img src="/media/img/modal-logo.png" alt="site Logo"/></a></div>
+              </div>
+              <div class="modal-body log-form-flds">
+                  <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)">
+                    <h1>Login to your Account</h1>
+                    <input type="text" class="form-control" id="" placeholder="PHONE/EMAIL ID" ng-model="vm.credentials.usernameOrEmail">
+                    <div ng-messages="vm.userForm.usernameOrEmail.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Username or Email is required.</p>
+                    </div>
+                    
+                    <input type="password" ng-model="vm.credentials.password" class="form-control last-border-sf" id="" placeholder="PASSWORD">
+                    <div ng-messages="vm.userForm.password.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Password is required.</p>
+                    </div>
+                    <button type="submit" class="btn">SIGN IN</button>
+                    <div class="clearfix cust-checker">
+                        <div class="pull-left"><div class="our-checkboxs"> <p><input type="checkbox" id="test1" /><label for="test1">Keep me SignIn</label></p></div></div>
+                        <div class="pull-right"><a ui-sref="password.forgot">Forgot Password?</a></div>
+                    </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                New user? <a ui-sref="authentication.signup">Sign Up</a>
+              </div>
+            </div>
+          </div>
+    </div>
+    </div>
+</section>

@@ -1,0 +1,257 @@
+<div class="dashboard-content fullHt">
+  <div class="dash-board-title">Ongoing Services</div>
+  <div class="dash-info-outers">
+    <div class="list-group">
+      <div class="table-responsive my_table_style">
+
+        <table class="table table-bordered table-hover">
+          <tr>
+            <th>Job Number</th>
+            <th>Technician</th>
+            <th>Service</th>
+            <th>Service Type</th>
+            <th>Service Booking Type</th>
+            <th>Status</th>
+            <th>Requested On</th>
+            <th>View Details</th>
+          </tr>
+          <tr ng-repeat="booking in vm.ongoing_jobs">
+            <td>{{$index+1}}</td>
+            <td>
+              <span ng-if="booking.status[0]=='assigned' || booking.status[0]=='rejected'">N/A
+            </span>
+
+              <span ng-if="booking.status[0]!='assigned' && booking.status[0]!='rejected'">
+                {{booking.technician.displayName}}
+            </span>
+            </td>
+            <td>{{booking.service.title}}</td>
+            <td>{{(booking.serviceType==1)?'One Time':'Recurring'}}</td>
+            <td>{{booking.bookServiceType==1?'Now':'Schedule'}}</td>
+            <td>
+               <span ng-if="booking.status[0]=='estimation'">Estimation
+                        </span>
+              <span ng-if="booking.status[0]=='estimationpending'">Estimation Approval Pending</span>
+              <span ng-if="booking.status[0]=='estimationapproved'">Estimation Approved</span>
+              <span ng-if="booking.status[0]=='estimationrejected'">Estimation Rejected</span>
+              <span ng-if="booking.status[0]=='assigned' || booking.status[0]=='rejected'">Acceptance Pending
+                   <a href="">Cancel Booking</a>
+            </span>
+              <span ng-if="booking.status[0]=='notassigned'">Not Assigned
+            <a href="">Cancel Booking</a>
+            </span>
+              <span ng-if="booking.status[0]=='accepted'">Accepted
+            <a href="">Cancel Booking</a>
+            </span>
+
+              <span ng-if="booking.status[0]=='ontheway'">On the Way
+            </span>
+
+              <span ng-if="booking.status[0]=='onjob' && booking.additional_status[0]=='none'">On Job</span>
+              <span ng-if="booking.status[0]=='onjob' && booking.additional_status[0]=='pending'">On Job - Additional Hours Estimation Approval Pending</span>
+              <span ng-if="booking.status[0]=='onjob' && booking.additional_status[0]=='rejected'">On Job - Additional Hours Estimation Rejected</span>
+              <span ng-if="booking.status[0]=='onjob' && booking.additional_status[0]=='accepted'">On Job - Additional Hours Estimation Accepted</span>
+              <span ng-if="booking.status[0]=='techcompleted'">Job Completed- Approval Pending
+              <a href="javascript:void(0)" ng-click="vm.jobCompleted(booking._id)">Completed</a>
+              <a href="javascript:void(0)" ng-click="vm.jobIncomplete(booking._id)">Incomplete</a>
+              </span>
+              <span ng-if="booking.status[0]=='custcompleted'">Job Completed- Invoice Pending
+              </span>
+              <span ng-if="booking.status[0]=='invoice'">
+                <a href="javsacript:void(0)">Invoice</a>
+                <button class="btn" type="button" ng-click="vm.jobPaid(booking._id)">Paid</button>
+              </span>
+              <span ng-if="booking.status[0]=='incomplete'">Job Incomplete</span>
+              <span ng-if="booking.status[0]=='custpaid'">Paid - Technician Approval Pending</span>
+              <span ng-if="booking.status[0]=='paidrejected'">Paid Rejected
+              <button class="btn" type="button" ng-click="vm.jobPaid(booking._id)">Paid</button>
+              </span>
+            </td>
+
+            <td>{{booking.created | date:'MM/dd/y hh:mm:ss'}}</td>
+            <td>
+              <a ng-if="booking.status[0]=='onjob'||booking.status[0]=='invoice' || booking.status[0]=='estimationpending' || booking.status[0]=='estimationrejected' || booking.status[0]=='estimationapproved' || booking.status[0]=='custcompleted' || booking.status[0]=='custpaid'"
+                 ng-click="vm.showEstimation(booking._id)">View Estimation</a>
+              <a ui-sref="book.userOngoingJobsDetail({bookingId:booking._id})">View Detail
+              </a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="view_estimation_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="madal-logo"><a href="javascript:void(0)">Estimation</a></div>
+      </div>
+      <div class="modal-body log-form-flds">
+
+        <form name="vm.estimationForm" ng-submit="vm.submitEstimation(vm.estimationForm.$valid)"
+              class="form-horizontal border-boters" novalidate autocomplete="off">
+          <div class="row">
+            <label for="required_time" class="col-sm-2"></label>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2">Required Time</label>
+            <div class="col-sm-10"> {{vm.estimationDetail.requiredHours}} Hour {{vm.estimationDetail.requiredMinutes}}
+              Minutes
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2">Required Inventory</label>
+
+            <table class="table">
+              <tr>
+                <th>Inventory Item</th>
+                <th>Quantity</th>
+              </tr>
+              <tr ng-repeat="inventory in vm.estimationDetail.estimationinventory">
+
+                <td>{{inventory.inventory_id.title}}</td>
+                <td>{{inventory.quantity}}</td>
+              </tr>
+            </table>
+          </div>
+
+
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2">Required Cost</label>
+            <div class="col-sm-10"> {{vm.estimationDetail.cost}}</div>
+          </div>
+
+          <div class="row" ng-if="vm.estimationDetail.status=='pending'">
+            <div class="col-sm-6 text-center">
+              <button type="button" class="btn btn-info" ng-click="vm.acceptEstimation()"><i
+                class="fa fa-location-arrow"></i>Accept
+              </button>
+            </div>
+            <div class="col-sm-6 text-center">
+              <button type="button" class="btn btn-info" ng-click="vm.showRejectEstimationPopup()"><i
+                class="fa fa-location-arrow"></i>Reject
+              </button>
+            </div>
+          </div>
+
+          <div class="additional-container" ng-if="vm.additional.length>0">
+            <h1>Additional Hours</h1>
+            <div class="content" ng-repeat="obj in vm.additional">
+              <div class="form-group" >
+                <label for="inputEmail3" class="col-sm-2">Date</label>
+                <div class="col-sm-10">
+                  {{obj.created| date:'MM/dd/y hh:mm:ss'}}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Required Time</label>
+                <div class="col-sm-10"> {{obj.requiredHours}} Hour {{obj.requiredMinutes}}
+                  Minutes
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Required Inventory</label>
+
+                <table class="table">
+                  <tr>
+                    <th>Inventory Item</th>
+                    <th>Quantity</th>
+                  </tr>
+                  <tr ng-repeat="inventory in obj.additionalHoursEstimationInventory">
+                    <td>{{inventory.inventory_id.title}}</td>
+                    <td>{{inventory.quantity}}</td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="form-group" >
+                <label for="inputEmail3" class="col-sm-2">Status</label>
+                <div class="col-sm-10">
+                  <span ng-if="obj.status[0]=='pending'">Approval Pending
+                  <a href="javascript:void(0)" ng-click="vm.acceptAdditionalEstimation(obj._id)">Accept</a>
+                  <a href="javascript:void(0)" ng-click="vm.rejectAdditionalEstimation(obj._id)">Reject</a>
+                  </span>
+                  <span ng-if="obj.status[0]=='rejected'"> Rejected</span>
+                  <span ng-if="obj.status[0]=='accepted'"> Accepted</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="row" ng-if="vm.estimationDetail.status!='pending'">
+            <div class="col-sm-12 text-center">
+              <button type="button" class="btn btn-info" onclick="jQuery('.modal').modal('hide');">Close</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!--Back To <a href="javascript:void(0)">Log In</a>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reject_estimation_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="madal-logo"><a href="javascript:void(0)">Prepare Estimation</a></div>
+      </div>
+      <div class="modal-body log-form-flds">
+
+        <form name="vm.estimationForm" ng-submit="vm.submitRejectEstimation(vm.estimationForm.$valid)"
+              class="form-horizontal border-boters" novalidate autocomplete="off">
+          <div class="row">
+            <label for="required_time" class="col-sm-2">Reason of Rejection</label>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10">
+
+              <select name="reasonType" id="reasonType" class="form-control" ng-model="vm.estimationData.reasonType"
+                      required>
+                <option value="Time">Time</option>
+                <option value="Cost">Cost</option>
+                <option value="Inventory">Inventory</option>
+                <option value="Other">Other</option>
+              </select>
+              <div ng-messages=" vm.estimationSubmitted && vm.estimationForm.reasonType.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Please select reason of rejection..</p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <textarea class="form-control" id="description" name="description" placeholder="Description"
+                        ng-model="vm.estimationData.description" required></textarea>
+              <div ng-messages="vm.estimationSubmitted && vm.estimationForm.description.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Please enter Description.</p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <button type="submit" class="btn btn-info"><i class="fa fa-location-arrow"></i>Reject</button>
+            </div>
+            <div class="col-sm-12 text-center">
+              <button type="button" onclick="jQuery('.modal').modal('hide')" class="btn btn-info"><i
+                class="fa fa-location-arrow"></i>Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!--Back To <a href="javascript:void(0)">Log In</a>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+

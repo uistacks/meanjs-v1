@@ -1,0 +1,94 @@
+
+<style>
+
+
+    .angular-google-map-container { height: 100vh; }
+</style>
+
+
+
+<div class="dashboard-content fullHt">
+    <div class="dash-board-title">Ongoing Service Details <a href="/book/jobs/ongoing-services">Back</a></div>
+    <div class="dash-info-outers">
+        <form class="form-horizontal border-boters">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Techinician</label>
+                <div class="col-sm-10" ng-if="vm.jobDetail.status[0]=='assigned' || vm.jobDetail.status[0]=='rejected'">N/A</div>
+                <div class="col-sm-10" ng-if="vm.jobDetail.status[0]!='assigned' && vm.jobDetail.status[0]!='rejected'">{{vm.jobDetail.technician.displayName}}</div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Service</label>
+                <div class="col-sm-10">{{vm.jobDetail.service.title}}</div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Service Type</label>
+                <div class="col-sm-10">{{(vm.jobDetail.serviceType==1)?'One Time':'Recurring'}}</div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Service Booking Type</label>
+                <div class="col-sm-10">{{vm.jobDetail.bookServiceType==1?'Now':'Schedule'}}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Description</label>
+                <div class="col-sm-10">{{vm.jobDetail.workDescription}}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Requested On</label>
+                <div class="col-sm-10">{{vm.jobDetail.created| date:'MM/dd/y hh:mm:ss'}}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Status</label>
+
+                <div class="col-sm-10">
+                    {{vm.jobDetail.status[0]}}
+                  <span ng-if="vm.jobDetail.status[0]=='assigned' || vm.jobDetail.status[0]=='rejected'">Acceptance Pending
+                  <a href="">
+                        Cancel Booking
+                    </a>
+                  </span>
+                  <span ng-if="vm.jobDetail.status[0]=='accepted'">Accepted
+                  <a href="">
+                        Cancel Booking
+                    </a>
+                  </span>
+                  <span ng-if="vm.jobDetail.status[0]=='ontheway'">On the Way</span>
+
+                  <span ng-if="vm.jobDetail.status[0]=='estimation'">Estimation</span>
+                  <span ng-if="vm.jobDetail.status[0]=='estimationpending'">Estimation Approval Pending</span>
+                  <span ng-if="vm.jobDetail.status[0]=='estimationrejected'">Estimation Rejected</span>
+                  <span ng-if="vm.jobDetail.status[0]=='estimationapproved'">Estimation Approved</span>
+                  <span ng-if="vm.jobDetail.status[0]=='onjob'">On Job</span>
+                  <span ng-if="vm.jobDetail.status[0]=='techcompleted'">Job Completed- Approval Pending</span>
+                  <span ng-if="vm.jobDetail.status[0]=='incomplete'">Job Incomplete</span>
+                  <span ng-if="vm.jobDetail.status[0]=='custcompleted'">Job Completed- Invoice Pending</span>
+                  <span ng-if="vm.jobDetail.status[0]=='invoice'">Payment Pending</span>
+                  <span ng-if="vm.jobDetail.status[0]=='custpaid'">Paid - Technician Approval Pending</span>
+                  <span ng-if="vm.jobDetail.status[0]=='paidrejected'">Paid Rejected</span>
+                </div>
+            </div>
+
+       <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2">Address</label>
+        <div class="list-group">
+            <div >
+                <ui-gmap-google-map
+                  control="vm.map.control"
+                    center='vm.map.center'
+                    zoom='vm.map.zoom' aria-label="Google map" >
+                    <ui-gmap-marker  ng-repeat="marker in vm.marker "
+                        coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                        <ui-gmap-window>
+                            <div>{{marker.window.title}}</div>
+                        </ui-gmap-window>
+                    </ui-gmap-marker>
+                </ui-gmap-google-map>
+            </div>
+
+        </div>
+       </div>
+              </form>
+    </div>
+</div>

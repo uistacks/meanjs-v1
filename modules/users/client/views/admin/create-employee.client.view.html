@@ -1,0 +1,2022 @@
+<section>
+  <div class="page-header">
+    <h1>Create new Employee</h1>
+  </div>
+  <form name="vm.userForm" ng-submit="vm.createNewEmployee(vm.userForm.$valid)"
+        class="form-horizontal form-label-left" novalidate>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary pull-right">Save Employee</button>
+        <a ui-sref="admin.users({userType: 'employees'})" class="btn btn-default pull-right">Back to Employees</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="nav nav-tabs bar_tabs">
+          <li ng-class="{active: currentSection == 'personal'}"><a role="button" ng-click="currentSection='personal'">Personal
+            Information</a></li>
+          <li ng-class="{active: currentSection == 'login'}"><a role="button" ng-click="currentSection = 'login'">Login
+            Information</a></li>
+          <li ng-class="{active: currentSection == 'address'}"><a role="button" ng-click="currentSection='address'">Address
+            Information</a></li>
+          <li ng-class="{active: currentSection == 'job'}"><a role="button" ng-click="currentSection='job'">Job
+            Information</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row" ng-show="currentSection == 'personal'">
+      <div class="col-md-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h3>Personal Information
+              <small>Use below form to add personal information</small>
+            </h3>
+          </div>
+          <div class="x_content">
+            <fieldset>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group" show-errors>
+                  <label for="firstName" class="control-label col-md-4 col-sm-3 col-xs-12">First Name <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="firstName" name="firstName" class="form-control col-md-7 col-xs-12"
+                           ng-model="vm.user.firstName" placeholder="First Name" required autofocus/>
+                    <div ng-messages="vm.userForm.firstName.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">First name is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="middleName" class="control-label col-md-4 col-sm-3 col-xs-12">Middle Name <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="middleName" name="middleName" class="form-control"
+                           ng-model="vm.user.middleName" placeholder="Middle Name" required/>
+                    <div ng-messages="vm.userForm.middleName.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Middle name is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="lastName" class="control-label col-md-4 col-sm-3 col-xs-12">Last Name <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName"
+                           placeholder="Last Name" required/>
+                    <div ng-messages="vm.userForm.lastName.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Last name is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label class="control-label col-md-4 col-sm-3 col-xs-12">Gender <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <label><input type="radio" id="genderM" name="gender" value="M" checked="checked" autocomplete="off"
+                                  ng-model="vm.user.gender" class="flat" required/> Male </label>
+                    <label><input type="radio" id="genderF" name="gender" value="F" autocomplete="off"
+                                  ng-model="vm.user.gender" class="flat" required/> Female </label>
+                    <div ng-messages="vm.userForm.gender.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Gender is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="dob" class="control-label col-md-4 col-sm-3 col-xs-12">Date of Birth <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="input-group date datePicker" data-max-date="-18 years">
+                      <input type="text" id="dob" name="dob" update-ng-model-on-blur="" class="form-control" ng-model="vm.user.dob"
+                             placeholder="Date of Birth"  required/>
+                      <span class="input-group-addon">
+                               <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                    </div>
+                    <div ng-messages="vm.userForm.dob.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Date of Birth is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="mobileNo" class="control-label col-md-4 col-sm-3 col-xs-12">Personal Mobile No</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="mobileNo" name="mobileNo" class="form-control" ng-model="vm.user.mobileNo"
+                           placeholder="Personal Mobile No"/>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="personalEmail" class="control-label col-md-4 col-sm-3 col-xs-12">Personal Email ID <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="personalEmail" name="personalEmail" class="form-control"
+                           ng-model="vm.user.personalEmail"
+                           placeholder="Personal Email ID" lowercase required/>
+                    <div ng-messages="vm.userForm.personalEmail.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Personal Email is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="nationality" class="control-label col-md-4 col-sm-3 col-xs-12">Nationality</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <select id="nationality" name="nationality" class="form-control" ng-model="vm.user.nationality"
+                            required>
+                      <option value="" selected="selected">Select Nationality</option>
+                      <option value="1">Afghan</option>
+                      <option value="2">Albanian</option>
+                      <option value="3">Algerian</option>
+                      <option value="4">Andorran</option>
+                      <option value="5">Angolan</option>
+                      <option value="6">Antiguans, Barbudans</option>
+                      <option value="7">Argentinean</option>
+                      <option value="8">Armenian</option>
+                      <option value="9">Australian</option>
+                      <option value="10">Austrian</option>
+                      <option value="11">Azerbaijani</option>
+                      <option value="12">Bahamian</option>
+                      <option value="13">Bahraini</option>
+                      <option value="14">Bangladeshi</option>
+                      <option value="15">Barbadian</option>
+                      <option value="16">Belarusian</option>
+                      <option value="17">Belgian</option>
+                      <option value="18">Belizean</option>
+                      <option value="19">Beninese</option>
+                      <option value="20">Bhutanese</option>
+                      <option value="21">Bolivian</option>
+                      <option value="22">Bosnian, Herzegovinian</option>
+                      <option value="23">Motswana (singular), Batswana (plural)</option>
+                      <option value="24">Brazilian</option>
+                      <option value="25">Bruneian</option>
+                      <option value="26">Bulgarian</option>
+                      <option value="27">Burkinabe</option>
+                      <option value="28">Burundian</option>
+                      <option value="29">Cambodian</option>
+                      <option value="30">Cameroonian</option>
+                      <option value="31">Canadian</option>
+                      <option value="32">Cape Verdian</option>
+                      <option value="33">Central African</option>
+                      <option value="34">Chadian</option>
+                      <option value="35">Chilean</option>
+                      <option value="36">Chinese</option>
+                      <option value="37">Colombian</option>
+                      <option value="38">Comoran</option>
+                      <option value="39">Congolese</option>
+                      <option value="40">Congolese</option>
+                      <option value="41">Costa Rican</option>
+                      <option value="42">Ivorian</option>
+                      <option value="43">Croatian</option>
+                      <option value="44">Cuban</option>
+                      <option value="45">Cypriot</option>
+                      <option value="46">Czech</option>
+                      <option value="47">Danish</option>
+                      <option value="48">Djibouti</option>
+                      <option value="49">Dominican</option>
+                      <option value="50">Dominican</option>
+                      <option value="51">East Timorese</option>
+                      <option value="52">Ecuadorean</option>
+                      <option value="53">Egyptian</option>
+                      <option value="54">Salvadoran</option>
+                      <option value="55">Equatorial Guinean</option>
+                      <option value="56">Eritrean</option>
+                      <option value="57">Estonian</option>
+                      <option value="58">Ethiopian</option>
+                      <option value="59">Fijian</option>
+                      <option value="60">Finnish</option>
+                      <option value="61">French</option>
+                      <option value="62">Gabonese</option>
+                      <option value="63">Gambian</option>
+                      <option value="64">Georgian</option>
+                      <option value="65">German</option>
+                      <option value="66">Ghanaian</option>
+                      <option value="67">Greek</option>
+                      <option value="68">Grenadian</option>
+                      <option value="69">Guatemalan</option>
+                      <option value="70">Guinean</option>
+                      <option value="71">Guinea-Bissauan</option>
+                      <option value="72">Guyanese</option>
+                      <option value="73">Haitian</option>
+                      <option value="74">Honduran</option>
+                      <option value="75">Hungarian</option>
+                      <option value="76">Icelander</option>
+                      <option selected="" value="77">Indian</option>
+                      <option value="78">Indonesian</option>
+                      <option value="79">Iranian</option>
+                      <option value="80">Iraqi</option>
+                      <option value="81">Irish</option>
+                      <option value="82">Israeli</option>
+                      <option value="83">Italian</option>
+                      <option value="84">Jamaican</option>
+                      <option value="85">Japanese</option>
+                      <option value="86">Jordanian</option>
+                      <option value="87">Kazakhstani</option>
+                      <option value="88">Kenyan</option>
+                      <option value="89">I-Kiribati</option>
+                      <option value="90">North Korean</option>
+                      <option value="91">South Korean</option>
+                      <option value="92">Kuwaiti</option>
+                      <option value="93">Kirghiz</option>
+                      <option value="94">Laotian</option>
+                      <option value="95">Latvian</option>
+                      <option value="96">Lebanese</option>
+                      <option value="97">Mosotho</option>
+                      <option value="98">Liberian</option>
+                      <option value="99">Libyan</option>
+                      <option value="100">Liechtensteiner</option>
+                      <option value="101">Lithuanian</option>
+                      <option value="102">Luxembourger</option>
+                      <option value="103">Macedonian</option>
+                      <option value="104">Malagasy</option>
+                      <option value="105">Malawian</option>
+                      <option value="106">Malaysian</option>
+                      <option value="107">Maldivan</option>
+                      <option value="108">Malian</option>
+                      <option value="109">Maltese</option>
+                      <option value="110">Marshallese</option>
+                      <option value="111">Mauritanian</option>
+                      <option value="112">Mauritian</option>
+                      <option value="113">Mexican</option>
+                      <option value="114">Micronesian</option>
+                      <option value="115">Moldovan</option>
+                      <option value="116">Monegasque</option>
+                      <option value="117">Mongolian</option>
+                      <option value="118">Moroccan</option>
+                      <option value="119">Mozambican</option>
+                      <option value="120">Burmese</option>
+                      <option value="121">Namibian</option>
+                      <option value="122">Nauruan</option>
+                      <option value="123">Nepalese</option>
+                      <option value="124">Dutch</option>
+                      <option value="125">New Zealander</option>
+                      <option value="126">Nicaraguan</option>
+                      <option value="127">Nigerien</option>
+                      <option value="128">Nigerian</option>
+                      <option value="129">Norwegian</option>
+                      <option value="130">Omani</option>
+                      <option value="131">Pakistani</option>
+                      <option value="132">Palauan</option>
+                      <option value="133">Panamanian</option>
+                      <option value="134">Papua New Guinean</option>
+                      <option value="135">Paraguayan</option>
+                      <option value="136">Peruvian</option>
+                      <option value="137">Filipino</option>
+                      <option value="138">Polish</option>
+                      <option value="139">Portuguese</option>
+                      <option value="140">Qatari</option>
+                      <option value="141">Romanian</option>
+                      <option value="142">Russian</option>
+                      <option value="143">Rwandan</option>
+                      <option value="144">Kittian and Nevisian</option>
+                      <option value="145">Saint Lucian</option>
+                      <option value="146">Samoan</option>
+                      <option value="147">Sammarinese</option>
+                      <option value="148">Sao Tomean</option>
+                      <option value="149">Saudi Arabian</option>
+                      <option value="150">Senegalese</option>
+                      <option value="151">Serbian</option>
+                      <option value="152">Seychellois</option>
+                      <option value="153">Sierra Leonean</option>
+                      <option value="154">Singaporean</option>
+                      <option value="155">Slovak</option>
+                      <option value="156">Slovene</option>
+                      <option value="157">Solomon Islander</option>
+                      <option value="158">Somali</option>
+                      <option value="159">South African</option>
+                      <option value="160">Spanish</option>
+                      <option value="161">Sri Lankan</option>
+                      <option value="162">Sudanese</option>
+                      <option value="163">Surinamer</option>
+                      <option value="164">Swazi</option>
+                      <option value="165">Swedish</option>
+                      <option value="166">Swiss</option>
+                      <option value="167">Syrian</option>
+                      <option value="168">Taiwanese</option>
+                      <option value="169">Tadzhik</option>
+                      <option value="170">Tanzanian</option>
+                      <option value="171">Thai</option>
+                      <option value="172">Togolese</option>
+                      <option value="173">Tongan</option>
+                      <option value="174">Trinidadian</option>
+                      <option value="175">Tunisian</option>
+                      <option value="176">Turkish</option>
+                      <option value="177">Turkmen</option>
+                      <option value="178">Tuvaluan</option>
+                      <option value="179">Ugandan</option>
+                      <option value="180">Ukrainian</option>
+                      <option value="181">Emirian</option>
+                      <option value="182">British</option>
+                      <option value="183">American</option>
+                      <option value="184">Uruguayan</option>
+                      <option value="185">Uzbekistani</option>
+                      <option value="186">Ni-Vanuatu</option>
+                      <option value="187">none</option>
+                      <option value="188">Venezuelan</option>
+                      <option value="189">Vietnamese</option>
+                      <option value="190">Yemeni</option>
+                      <option value="191">Zambian</option>
+                      <option value="192">Zimbabwean</option>
+
+                    </select>
+                    <div ng-messages="vm.userForm.nationality.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Nationality is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label class="control-label col-md-4 col-sm-3 col-xs-12">Marital Status <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <label><input type="radio" class="flat" id="maritalStatusS" name="maritalStatus" value="Single" checked="checked"
+                                  autocomplete="off" ng-model="vm.user.maritalStatus" required/> Single </label>
+                    <label><input type="radio" class="flat" id="maritalStatusM" name="maritalStatus" value="Married"
+                                  autocomplete="off" ng-model="vm.user.maritalStatus" required/> Married </label>
+                    <div ng-messages="vm.userForm.maritalStatus.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Marital Status is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="drivingLicence" class="control-label col-md-4 col-sm-3 col-xs-12">Driving Licence</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control" name="drivingLicence" id="drivingLicence"
+                           ng-model="vm.user.drivingLicence" placeholder="Driving Licence">
+                    <div ng-messages="vm.userForm.drivingLicence.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Driving Licence is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+
+                <h4>Local Bank Details</h4>
+                <div class="separator"></div>
+                <div class="form-group" show-errors>
+                  <label for="localBankAcNo" class="control-label col-md-4 col-sm-3 col-xs-12">Bank Account No</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="localBankAcNo" name="localBankAcNo" class="form-control"
+                           ng-model="vm.user.localBankAcNo" placeholder="Local Bank Account No"/>
+                    <div ng-messages="vm.userForm.localBankAcNo.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Local Bank Account No is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="localBankName" class="control-label col-md-4 col-sm-3 col-xs-12">Bank Name</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="localBankName" name="localBankName" class="form-control"
+                           ng-model="vm.user.localBankName" placeholder="Local Bank Name"/>
+                    <div ng-messages="vm.userForm.localBankName.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Local Bank Account Name is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <h4>Passport Details</h4>
+                <div class="separator"></div>
+                <div class="form-group" show-errors>
+                  <label for="passportNo" class="control-label col-md-4 col-sm-3 col-xs-12">Passport No</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="passportNo" name="passportNo" class="form-control"
+                           ng-model="vm.user.passportNo" placeholder="Passport No"/>
+                    <div ng-messages="vm.userForm.passportNo.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Passport No is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="passportIssueDate" class="control-label col-md-4 col-sm-3 col-xs-12">Issue Date</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                      <div class="input-group date datePicker">
+                      <input type="text" id="passportIssueDate" name="passportIssueDate" class="form-control"
+                             ng-model="vm.user.passportIssueDate" placeholder="Passport Issue Date"/>
+                        <span class="input-group-addon">
+                               <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                      <div ng-messages="vm.userForm.passportIssueDate.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Passport No is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="passportExpiryDate" class="control-label col-md-4 col-sm-3 col-xs-12">Expiry Date</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="input-group date datePicker">
+                    <input type="text" id="passportExpiryDate" name="passportExpiryDate" class="form-control"
+                           ng-model="vm.user.passportExpiryDate" placeholder="Passport Expiry Date"/>
+                    <span class="input-group-addon">
+                               <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                    <div ng-messages="vm.userForm.passportExpiryDate.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Passport Expiry Date is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="passportCountry" class="control-label col-md-4 col-sm-3 col-xs-12">Country</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <select id="passportCountry" name="passportCountry" class="form-control"
+                            ng-model="vm.user.passportCountry" placeholder="Passport Country">
+                      <option selected="selected" value="">Select Passport Country</option>
+                      <option value="1">Afghanistan</option>
+                      <option value="2">Albania</option>
+                      <option value="3">Algeria</option>
+                      <option value="4">American Samoa</option>
+                      <option value="5">Andorra</option>
+                      <option value="6">Angola</option>
+                      <option value="7">Anguilla</option>
+                      <option value="8">Antarctica</option>
+                      <option value="9">Antigua and Barbuda</option>
+                      <option value="10">Argentina</option>
+                      <option value="11">Armenia</option>
+                      <option value="12">Aruba</option>
+                      <option value="13">Australia</option>
+                      <option value="14">Austria</option>
+                      <option value="15">Azerbaijan</option>
+                      <option value="16">Bahamas</option>
+                      <option value="17">Bahrain</option>
+                      <option value="18">Bangladesh</option>
+                      <option value="19">Barbados</option>
+                      <option value="20">Belarus</option>
+                      <option value="21">Belgium</option>
+                      <option value="22">Belize</option>
+                      <option value="23">Benin</option>
+                      <option value="24">Bermuda</option>
+                      <option value="25">Bhutan</option>
+                      <option value="26">Bolivia</option>
+                      <option value="27">Bosnia and Herzegovina</option>
+                      <option value="28">Botswana</option>
+                      <option value="29">Bouvet Island</option>
+                      <option value="30">Brazil</option>
+                      <option value="31">British Indian Ocean Territory</option>
+                      <option value="32">Brunei</option>
+                      <option value="33">Bulgaria</option>
+                      <option value="34">Burkina Faso</option>
+                      <option value="35">Burundi</option>
+                      <option value="36">Cambodia</option>
+                      <option value="37">Cameroon</option>
+                      <option value="38">Canada</option>
+                      <option value="39">Cape Verde</option>
+                      <option value="40">Cayman Islands</option>
+                      <option value="41">Central African Republic</option>
+                      <option value="42">Chad</option>
+                      <option value="43">Chile</option>
+                      <option value="44">China</option>
+                      <option value="45">Christmas Island</option>
+                      <option value="46">Cocos (Keeling) Islands</option>
+                      <option value="47">Colombia</option>
+                      <option value="48">Comoros</option>
+                      <option value="49">Congo</option>
+                      <option value="50">Democratic Republic of the Congo</option>
+                      <option value="51">Cook Islands</option>
+                      <option value="52">Costa Rica</option>
+                      <option value="53">Cote d'ivoire</option>
+                      <option value="54">Croatia</option>
+                      <option value="55">Cuba</option>
+                      <option value="56">Cyprus</option>
+                      <option value="57">Czech Republic</option>
+                      <option value="58">Denmark</option>
+                      <option value="59">Djibouti</option>
+                      <option value="60">Dominica</option>
+                      <option value="61">Dominican Republic</option>
+                      <option value="62">Ecuador</option>
+                      <option value="63">Egypt</option>
+                      <option value="64">El Salvador</option>
+                      <option value="65">Equatorial Guinea</option>
+                      <option value="66">Eritrea</option>
+                      <option value="67">Estonia</option>
+                      <option value="68">Ethiopia</option>
+                      <option value="69">Falkland Islands (Malvinas)</option>
+                      <option value="70">Faroe Islands</option>
+                      <option value="71">Fiji</option>
+                      <option value="72">Finland</option>
+                      <option value="73">France</option>
+                      <option value="74">French Guiana</option>
+                      <option value="75">French Polynesia</option>
+                      <option value="76">French Southern Territories</option>
+                      <option value="77">Gabon</option>
+                      <option value="78">Gambia</option>
+                      <option value="79">Georgia</option>
+                      <option value="80">Germany</option>
+                      <option value="81">Ghana</option>
+                      <option value="82">Gibraltar</option>
+                      <option value="83">Greece</option>
+                      <option value="84">Greenland</option>
+                      <option value="85">Grenada</option>
+                      <option value="86">Guadaloupe</option>
+                      <option value="87">Guam</option>
+                      <option value="88">Guatemala</option>
+                      <option value="89">Guinea</option>
+                      <option value="90">Guinea-Bissau</option>
+                      <option value="91">Guyana</option>
+                      <option value="92">Haiti</option>
+                      <option value="93">Heard Island and McDonald Islands</option>
+                      <option value="94">Vatican City</option>
+                      <option value="95">Honduras</option>
+                      <option value="96">Hong Kong</option>
+                      <option value="97">Hungary</option>
+                      <option value="98">Iceland</option>
+                      <option value="99">India</option>
+                      <option value="100">Indonesia</option>
+                      <option value="101">Iran</option>
+                      <option value="102">Iraq</option>
+                      <option value="103">Ireland</option>
+                      <option value="104">Israel</option>
+                      <option value="105">Italy</option>
+                      <option value="106">Jamaica</option>
+                      <option value="107">Japan</option>
+                      <option value="108">Jordan</option>
+                      <option value="109">Kazakhstan</option>
+                      <option value="110">Kenya</option>
+                      <option value="111">Kiribati</option>
+                      <option value="112">North Korea</option>
+                      <option value="113">South Korea</option>
+                      <option value="114">Kuwait</option>
+                      <option value="115">Kyrgyzstan</option>
+                      <option value="116">Laos</option>
+                      <option value="117">Latvia</option>
+                      <option value="118">Lebanon</option>
+                      <option value="119">Lesotho</option>
+                      <option value="120">Liberia</option>
+                      <option value="121">Libya</option>
+                      <option value="122">Liechtenstein</option>
+                      <option value="123">Lithuania</option>
+                      <option value="124">Luxembourg</option>
+                      <option value="125">Macao</option>
+                      <option value="126">Macedonia</option>
+                      <option value="127">Madagascar</option>
+                      <option value="128">Malawi</option>
+                      <option value="129">Malaysia</option>
+                      <option value="130">Maldives</option>
+                      <option value="131">Mali</option>
+                      <option value="132">Malta</option>
+                      <option value="133">Marshall Islands</option>
+                      <option value="134">Martinique</option>
+                      <option value="135">Mauritania</option>
+                      <option value="136">Mauritius</option>
+                      <option value="137">Mayotte</option>
+                      <option value="138">Mexico</option>
+                      <option value="139">Micronesia</option>
+                      <option value="140">Moldava</option>
+                      <option value="141">Monaco</option>
+                      <option value="142">Mongolia</option>
+                      <option value="143">Montenegro</option>
+                      <option value="144">Montserrat</option>
+                      <option value="145">Morocco</option>
+                      <option value="146">Mozambique</option>
+                      <option value="147">Myanmar</option>
+                      <option value="148">Namibia</option>
+                      <option value="149">Nauru</option>
+                      <option value="150">Nepal</option>
+                      <option value="151">Netherlands</option>
+                      <option value="152">Netherlands Antilles</option>
+                      <option value="153">New Caledonia</option>
+                      <option value="154">New Zealand</option>
+                      <option value="155">Nicaragua</option>
+                      <option value="156">Niger</option>
+                      <option value="157">Nigeria</option>
+                      <option value="158">Niue</option>
+                      <option value="159">Norfolk Island</option>
+                      <option value="160">Northern Mariana Islands</option>
+                      <option value="161">Norway</option>
+                      <option value="162">Oman</option>
+                      <option value="163">Pakistan</option>
+                      <option value="164">Palau</option>
+                      <option value="165">Palestinian Territory</option>
+                      <option value="166">Panama</option>
+                      <option value="167">Papua New Guinea</option>
+                      <option value="168">Paraguay</option>
+                      <option value="169">Peru</option>
+                      <option value="170">Phillipines</option>
+                      <option value="171">Pitcairn</option>
+                      <option value="172">Poland</option>
+                      <option value="173">Portugal</option>
+                      <option value="174">Puerto Rico</option>
+                      <option value="175">Qatar</option>
+                      <option value="176">Reunion</option>
+                      <option value="177">Romania</option>
+                      <option value="178">Russia</option>
+                      <option value="179">Rwanda</option>
+                      <option value="180">Saint Helena</option>
+                      <option value="181">Saint Kitts and Nevis</option>
+                      <option value="182">Saint Lucia</option>
+                      <option value="183">Saint Pierre and Miquelon</option>
+                      <option value="184">Saint Vincent and the Grenadines</option>
+                      <option value="185">Samoa</option>
+                      <option value="186">San Marino</option>
+                      <option value="187">Sao Tome and Principe</option>
+                      <option value="188">Saudi Arabia</option>
+                      <option value="189">Senegal</option>
+                      <option value="190">Serbia</option>
+                      <option value="191">Seychelles</option>
+                      <option value="192">Sierra Leone</option>
+                      <option value="193">Singapore</option>
+                      <option value="194">Slovakia</option>
+                      <option value="195">Slovenia</option>
+                      <option value="196">Solomon Islands</option>
+                      <option value="197">Somalia</option>
+                      <option value="198">South Africa</option>
+                      <option value="199">South Georgia and the South Sandwich Islands</option>
+                      <option value="200">Spain</option>
+                      <option value="201">Sri Lanka</option>
+                      <option value="202">Sudan</option>
+                      <option value="203">Suriname</option>
+                      <option value="204">Svalbard and Jan Mayen</option>
+                      <option value="205">Swaziland</option>
+                      <option value="206">Sweden</option>
+                      <option value="207">Switzerland</option>
+                      <option value="208">Syria</option>
+                      <option value="209">Taiwan</option>
+                      <option value="210">Tajikistan</option>
+                      <option value="211">Tanzania</option>
+                      <option value="212">Thailand</option>
+                      <option value="213">Timor-Leste</option>
+                      <option value="214">Togo</option>
+                      <option value="215">Tokelau</option>
+                      <option value="216">Tonga</option>
+                      <option value="217">Trinidad and Tobago</option>
+                      <option value="218">Tunisia</option>
+                      <option value="219">Turkey</option>
+                      <option value="220">Turkmenistan</option>
+                      <option value="221">Turks and Caicos Islands</option>
+                      <option value="222">Tuvalu</option>
+                      <option value="223">Uganda</option>
+                      <option value="224">Ukraine</option>
+                      <option value="225">United Arab Emirates</option>
+                      <option value="226">United Kingdom</option>
+                      <option value="227">United States</option>
+                      <option value="228">United States Minor Outlying Islands</option>
+                      <option value="229">Uruguay</option>
+                      <option value="230">Uzbekistan</option>
+                      <option value="231">Vanuatu</option>
+                      <option value="232">Venezuela</option>
+                      <option value="233">Vietnam</option>
+                      <option value="234">Virgin Islands, British</option>
+                      <option value="235">Virgin Islands, US</option>
+                      <option value="236">Wallis and Futuna</option>
+                      <option value="237">Western Sahara</option>
+                      <option value="238">Yemen</option>
+                      <option value="239">Zambia</option>
+                      <option value="240">Zimbabwe</option>
+                      <option value="241">Aland Islands</option>
+                      <option value="242">Isle of Man</option>
+                      <option value="243">Jersey</option>
+                      <option value="244">Saint Barthelemy</option>
+                      <option value="245">Saint Martin</option>
+                      <option value="246">España</option>
+
+                    </select>
+                    <div ng-messages="vm.userForm.passportCountry.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Passport Country is required.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <h4>Civil ID Details</h4>
+                <div class="separator"></div>
+
+                <div class="form-group" show-errors>
+                  <label for="civilIDNo" class="control-label col-md-4 col-sm-3 col-xs-12">Civil ID No</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="civilIDNo" name="civilIDNo" class="form-control" ng-model="vm.user.civilIDNo"
+                           placeholder="Civil ID No"/>
+                    <div ng-messages="vm.userForm.civilIDNo.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Civil ID No is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="civilIDIssueDate" class="control-label col-md-4 col-sm-3 col-xs-12">Issue Date</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="input-group date datePicker">
+                    <input type="text" id="civilIDIssueDate" name="civilIDIssueDate" class="form-control"
+                           ng-model="vm.user.civilIDIssueDate" placeholder="Civil ID Issue Date"/>
+                      <span class="input-group-addon">
+                               <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                    <div ng-messages="vm.userForm.civilIDIssueDate.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Civil ID Issue Date is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="civilIDExpiryDate" class="control-label col-md-4 col-sm-3 col-xs-12">Expiry Date</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="input-group date datePicker">
+                    <input type="text" id="civilIDExpiryDate" name="civilIDExpiryDate" class="form-control"
+                           ng-model="vm.user.civilIDExpiryDate" placeholder="Civil ID Expiry Date"/>
+                    <span class="input-group-addon">
+                               <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                    <div ng-messages="vm.userForm.civilIDExpiryDate.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Civil ID Expiry Date is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+
+                <h4>Resident Permit Details</h4>
+                <div class="separator"></div>
+
+                <div class="form-group" show-errors>
+                  <label for="residentCardNo" class="control-label col-md-4 col-sm-3 col-xs-12">Resident Card No</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="residentCardNo" name="residentCardNo" class="form-control"
+                           ng-model="vm.user.residentCardNo" placeholder="Resident Card No"/>
+                    <div ng-messages="vm.userForm.residentCardNo.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Resident Card No is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="form-group" show-errors>
+                  <label for="iqama" class="control-label col-md-4 col-sm-3 col-xs-12">Iqama</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="iqama" name="iqama" class="form-control" ng-model="vm.user.iqama"
+                           placeholder="iqama"/>
+                    <div ng-messages="vm.userForm.iqama.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Iqama is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <br>
+                <button type="button" ng-click="currentSection='login'" class="btn btn-info pull-right">Next <i
+                  class="fa fa-arrow-right"></i></button>
+              </div>
+            </fieldset>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" ng-show="currentSection == 'login'">
+      <div class="col-md-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h3>Login Information
+              <small>Use below form to add login information</small>
+            </h3>
+          </div>
+          <div class="x_content">
+            <fieldset>
+              <div class="form-group" show-errors>
+                <label for="username" class="control-label col-md-3 col-sm-3 col-xs-12">Username</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username"
+                         placeholder="Username" lowercase required/>
+                  <div ng-messages="vm.userForm.username.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Username is required.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" show-errors>
+                <label for="password" class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="password" id="password" name="password" class="form-control" ng-model="vm.user.password"
+                         placeholder="Password" uib-popover="{{vm.getPopoverMsg()}}" uib-popover-trigger="focus"
+                         password-validator required />
+                  <div ng-messages="vm.userForm.password.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Password is required.</p>
+                    <div class="clearfix" ng-repeat="passwordError in passwordErrors">
+                      <p class="help-block error-text" ng-show="vm.userForm.password.$error.requirements">
+                        {{passwordError}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" show-errors>
+                <label for="accountStatus" class="control-label col-md-3 col-sm-3 col-xs-12">Account Status</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <select id="accountStatus" name="accountStatus" class="form-control"
+                          ng-model="vm.user.accountStatus[0]" placeholder="Account Status" required>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                  <div ng-messages="vm.userForm.accountStatus.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Account Status is required.</p>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="form-group">
+                <div class="col-md-6 col-md-offset-3 col-sm-6 col-xs-12">
+                  <button type="button" ng-click="currentSection='address'" class="btn btn-info pull-right">Next <i
+                    class="fa fa-arrow-right"></i></button>
+                  <button type="button" ng-click="currentSection='personal'" class="btn btn-default"><i
+                    class="fa fa-arrow-left"></i> Back
+                  </button>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" ng-show="currentSection == 'address'">
+      <div class="col-md-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h3>Address Information
+              <small>Use below form to add address information</small>
+            </h3>
+          </div>
+          <div class="x_content">
+            <fieldset>
+              <div class="col-md-6">
+                <h4>Permanent Address <i>
+                  <small>(for Expat)</small>
+                </i></h4>
+                <div class="form-group" show-errors>
+                  <label for="permanentAddress" class="control-label col-md-3 col-sm-3 col-xs-12">Address</label>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                  <textarea id="permanentAddress" name="permanentAddress" class="form-control"
+                            ng-model="vm.user.permanentAddress"
+                            placeholder="Permanent Address" style="resize: none" required></textarea>
+                    <div ng-messages="vm.userForm.permanentAddress.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Permanent Address is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="permanentAddressCity" class="control-label col-md-3 col-sm-3 col-xs-12">City</label>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <input type="text" id="permanentAddressCity" name="permanentAddressCity" class="form-control"
+                           ng-model="vm.user.permanentAddressCity"
+                           placeholder="Permanent Address City" required/>
+                    <div ng-messages="vm.userForm.permanentAddressCity.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Permanent Address City is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="permanentAddressState" class="control-label col-md-3 col-sm-3 col-xs-12">State</label>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <input type="text" id="permanentAddressState" name="permanentAddressState" class="form-control"
+                           ng-model="vm.user.permanentAddressState"
+                           placeholder="Permanent Address State" required/>
+                    <div ng-messages="vm.userForm.permanentAddressState.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Permanent Address State is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="permanentAddressZip" class="control-label col-md-3 col-sm-3 col-xs-12">Zip</label>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <input type="text" id="permanentAddressZip" name="permanentAddressZip" class="form-control"
+                           ng-model="vm.user.permanentAddressZip"
+                           placeholder="Permanent Address Zip" required/>
+                    <div ng-messages="vm.userForm.permanentAddressZip.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Permanent Address Zip is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="permanentAddressCountry" class="control-label col-md-3 col-sm-3 col-xs-12">Country</label>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <select id="permanentAddressCountry" name="permanentAddressCountry" class="form-control"
+                            ng-model="vm.user.permanentAddressCountry" placeholder="Country" required>
+                      <option selected="selected" value="">Select Country</option>
+                      <option value="1">Afghanistan</option>
+                      <option value="2">Albania</option>
+                      <option value="3">Algeria</option>
+                      <option value="4">American Samoa</option>
+                      <option value="5">Andorra</option>
+                      <option value="6">Angola</option>
+                      <option value="7">Anguilla</option>
+                      <option value="8">Antarctica</option>
+                      <option value="9">Antigua and Barbuda</option>
+                      <option value="10">Argentina</option>
+                      <option value="11">Armenia</option>
+                      <option value="12">Aruba</option>
+                      <option value="13">Australia</option>
+                      <option value="14">Austria</option>
+                      <option value="15">Azerbaijan</option>
+                      <option value="16">Bahamas</option>
+                      <option value="17">Bahrain</option>
+                      <option value="18">Bangladesh</option>
+                      <option value="19">Barbados</option>
+                      <option value="20">Belarus</option>
+                      <option value="21">Belgium</option>
+                      <option value="22">Belize</option>
+                      <option value="23">Benin</option>
+                      <option value="24">Bermuda</option>
+                      <option value="25">Bhutan</option>
+                      <option value="26">Bolivia</option>
+                      <option value="27">Bosnia and Herzegovina</option>
+                      <option value="28">Botswana</option>
+                      <option value="29">Bouvet Island</option>
+                      <option value="30">Brazil</option>
+                      <option value="31">British Indian Ocean Territory</option>
+                      <option value="32">Brunei</option>
+                      <option value="33">Bulgaria</option>
+                      <option value="34">Burkina Faso</option>
+                      <option value="35">Burundi</option>
+                      <option value="36">Cambodia</option>
+                      <option value="37">Cameroon</option>
+                      <option value="38">Canada</option>
+                      <option value="39">Cape Verde</option>
+                      <option value="40">Cayman Islands</option>
+                      <option value="41">Central African Republic</option>
+                      <option value="42">Chad</option>
+                      <option value="43">Chile</option>
+                      <option value="44">China</option>
+                      <option value="45">Christmas Island</option>
+                      <option value="46">Cocos (Keeling) Islands</option>
+                      <option value="47">Colombia</option>
+                      <option value="48">Comoros</option>
+                      <option value="49">Congo</option>
+                      <option value="50">Democratic Republic of the Congo</option>
+                      <option value="51">Cook Islands</option>
+                      <option value="52">Costa Rica</option>
+                      <option value="53">Cote d'ivoire</option>
+                      <option value="54">Croatia</option>
+                      <option value="55">Cuba</option>
+                      <option value="56">Cyprus</option>
+                      <option value="57">Czech Republic</option>
+                      <option value="58">Denmark</option>
+                      <option value="59">Djibouti</option>
+                      <option value="60">Dominica</option>
+                      <option value="61">Dominican Republic</option>
+                      <option value="62">Ecuador</option>
+                      <option value="63">Egypt</option>
+                      <option value="64">El Salvador</option>
+                      <option value="65">Equatorial Guinea</option>
+                      <option value="66">Eritrea</option>
+                      <option value="67">Estonia</option>
+                      <option value="68">Ethiopia</option>
+                      <option value="69">Falkland Islands (Malvinas)</option>
+                      <option value="70">Faroe Islands</option>
+                      <option value="71">Fiji</option>
+                      <option value="72">Finland</option>
+                      <option value="73">France</option>
+                      <option value="74">French Guiana</option>
+                      <option value="75">French Polynesia</option>
+                      <option value="76">French Southern Territories</option>
+                      <option value="77">Gabon</option>
+                      <option value="78">Gambia</option>
+                      <option value="79">Georgia</option>
+                      <option value="80">Germany</option>
+                      <option value="81">Ghana</option>
+                      <option value="82">Gibraltar</option>
+                      <option value="83">Greece</option>
+                      <option value="84">Greenland</option>
+                      <option value="85">Grenada</option>
+                      <option value="86">Guadaloupe</option>
+                      <option value="87">Guam</option>
+                      <option value="88">Guatemala</option>
+                      <option value="89">Guinea</option>
+                      <option value="90">Guinea-Bissau</option>
+                      <option value="91">Guyana</option>
+                      <option value="92">Haiti</option>
+                      <option value="93">Heard Island and McDonald Islands</option>
+                      <option value="94">Vatican City</option>
+                      <option value="95">Honduras</option>
+                      <option value="96">Hong Kong</option>
+                      <option value="97">Hungary</option>
+                      <option value="98">Iceland</option>
+                      <option value="99">India</option>
+                      <option value="100">Indonesia</option>
+                      <option value="101">Iran</option>
+                      <option value="102">Iraq</option>
+                      <option value="103">Ireland</option>
+                      <option value="104">Israel</option>
+                      <option value="105">Italy</option>
+                      <option value="106">Jamaica</option>
+                      <option value="107">Japan</option>
+                      <option value="108">Jordan</option>
+                      <option value="109">Kazakhstan</option>
+                      <option value="110">Kenya</option>
+                      <option value="111">Kiribati</option>
+                      <option value="112">North Korea</option>
+                      <option value="113">South Korea</option>
+                      <option value="114">Kuwait</option>
+                      <option value="115">Kyrgyzstan</option>
+                      <option value="116">Laos</option>
+                      <option value="117">Latvia</option>
+                      <option value="118">Lebanon</option>
+                      <option value="119">Lesotho</option>
+                      <option value="120">Liberia</option>
+                      <option value="121">Libya</option>
+                      <option value="122">Liechtenstein</option>
+                      <option value="123">Lithuania</option>
+                      <option value="124">Luxembourg</option>
+                      <option value="125">Macao</option>
+                      <option value="126">Macedonia</option>
+                      <option value="127">Madagascar</option>
+                      <option value="128">Malawi</option>
+                      <option value="129">Malaysia</option>
+                      <option value="130">Maldives</option>
+                      <option value="131">Mali</option>
+                      <option value="132">Malta</option>
+                      <option value="133">Marshall Islands</option>
+                      <option value="134">Martinique</option>
+                      <option value="135">Mauritania</option>
+                      <option value="136">Mauritius</option>
+                      <option value="137">Mayotte</option>
+                      <option value="138">Mexico</option>
+                      <option value="139">Micronesia</option>
+                      <option value="140">Moldava</option>
+                      <option value="141">Monaco</option>
+                      <option value="142">Mongolia</option>
+                      <option value="143">Montenegro</option>
+                      <option value="144">Montserrat</option>
+                      <option value="145">Morocco</option>
+                      <option value="146">Mozambique</option>
+                      <option value="147">Myanmar</option>
+                      <option value="148">Namibia</option>
+                      <option value="149">Nauru</option>
+                      <option value="150">Nepal</option>
+                      <option value="151">Netherlands</option>
+                      <option value="152">Netherlands Antilles</option>
+                      <option value="153">New Caledonia</option>
+                      <option value="154">New Zealand</option>
+                      <option value="155">Nicaragua</option>
+                      <option value="156">Niger</option>
+                      <option value="157">Nigeria</option>
+                      <option value="158">Niue</option>
+                      <option value="159">Norfolk Island</option>
+                      <option value="160">Northern Mariana Islands</option>
+                      <option value="161">Norway</option>
+                      <option value="162">Oman</option>
+                      <option value="163">Pakistan</option>
+                      <option value="164">Palau</option>
+                      <option value="165">Palestinian Territory</option>
+                      <option value="166">Panama</option>
+                      <option value="167">Papua New Guinea</option>
+                      <option value="168">Paraguay</option>
+                      <option value="169">Peru</option>
+                      <option value="170">Phillipines</option>
+                      <option value="171">Pitcairn</option>
+                      <option value="172">Poland</option>
+                      <option value="173">Portugal</option>
+                      <option value="174">Puerto Rico</option>
+                      <option value="175">Qatar</option>
+                      <option value="176">Reunion</option>
+                      <option value="177">Romania</option>
+                      <option value="178">Russia</option>
+                      <option value="179">Rwanda</option>
+                      <option value="180">Saint Helena</option>
+                      <option value="181">Saint Kitts and Nevis</option>
+                      <option value="182">Saint Lucia</option>
+                      <option value="183">Saint Pierre and Miquelon</option>
+                      <option value="184">Saint Vincent and the Grenadines</option>
+                      <option value="185">Samoa</option>
+                      <option value="186">San Marino</option>
+                      <option value="187">Sao Tome and Principe</option>
+                      <option value="188">Saudi Arabia</option>
+                      <option value="189">Senegal</option>
+                      <option value="190">Serbia</option>
+                      <option value="191">Seychelles</option>
+                      <option value="192">Sierra Leone</option>
+                      <option value="193">Singapore</option>
+                      <option value="194">Slovakia</option>
+                      <option value="195">Slovenia</option>
+                      <option value="196">Solomon Islands</option>
+                      <option value="197">Somalia</option>
+                      <option value="198">South Africa</option>
+                      <option value="199">South Georgia and the South Sandwich Islands</option>
+                      <option value="200">Spain</option>
+                      <option value="201">Sri Lanka</option>
+                      <option value="202">Sudan</option>
+                      <option value="203">Suriname</option>
+                      <option value="204">Svalbard and Jan Mayen</option>
+                      <option value="205">Swaziland</option>
+                      <option value="206">Sweden</option>
+                      <option value="207">Switzerland</option>
+                      <option value="208">Syria</option>
+                      <option value="209">Taiwan</option>
+                      <option value="210">Tajikistan</option>
+                      <option value="211">Tanzania</option>
+                      <option value="212">Thailand</option>
+                      <option value="213">Timor-Leste</option>
+                      <option value="214">Togo</option>
+                      <option value="215">Tokelau</option>
+                      <option value="216">Tonga</option>
+                      <option value="217">Trinidad and Tobago</option>
+                      <option value="218">Tunisia</option>
+                      <option value="219">Turkey</option>
+                      <option value="220">Turkmenistan</option>
+                      <option value="221">Turks and Caicos Islands</option>
+                      <option value="222">Tuvalu</option>
+                      <option value="223">Uganda</option>
+                      <option value="224">Ukraine</option>
+                      <option value="225">United Arab Emirates</option>
+                      <option value="226">United Kingdom</option>
+                      <option value="227">United States</option>
+                      <option value="228">United States Minor Outlying Islands</option>
+                      <option value="229">Uruguay</option>
+                      <option value="230">Uzbekistan</option>
+                      <option value="231">Vanuatu</option>
+                      <option value="232">Venezuela</option>
+                      <option value="233">Vietnam</option>
+                      <option value="234">Virgin Islands, British</option>
+                      <option value="235">Virgin Islands, US</option>
+                      <option value="236">Wallis and Futuna</option>
+                      <option value="237">Western Sahara</option>
+                      <option value="238">Yemen</option>
+                      <option value="239">Zambia</option>
+                      <option value="240">Zimbabwe</option>
+                      <option value="241">Aland Islands</option>
+                      <option value="242">Isle of Man</option>
+                      <option value="243">Jersey</option>
+                      <option value="244">Saint Barthelemy</option>
+                      <option value="245">Saint Martin</option>
+                      <option value="246">España</option>
+
+                    </select>
+                    <div ng-messages="vm.userForm.permanentAddressCountry.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Permanent Address Country is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <h4>Local Address</h4>
+                <div class="fomr-group">
+                  <label><input type="checkbox" class="flat" ng-model="isSameLocalAddress" value="true" ng-click="sameLocalAddress()"> Same as Permanent Address</label>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="localAddress" class="control-label col-md-3 col-sm-3 col-xs-12">Address</label>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                  <textarea id="localAddress" name="localAddress" style="resize: none" class="form-control"
+                            ng-model="vm.user.localAddress"
+                            placeholder="Local Address" required></textarea>
+                    <div class="col-md-3 col-sm-3" ng-messages="vm.userForm.localAddress.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Local Address is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="localAddressCity" class="control-label col-md-3 col-sm-3 col-xs-12">City</label>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <input type="text" id="localAddressCity" name="localAddressCity" class="form-control"
+                           ng-model="vm.user.localAddressCity"
+                           placeholder="Permanent Address City" required/>
+                    <div ng-messages="vm.userForm.localAddressCity.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Local Address City is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="localAddressState" class="control-label col-md-3 col-sm-3 col-xs-12">State</label>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <input type="text" id="localAddressState" name="localAddressState" class="form-control"
+                           ng-model="vm.user.localAddressState"
+                           placeholder="Permanent Address State" required/>
+                    <div ng-messages="vm.userForm.localAddressState.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Local Address State is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="localAddressZip" class="control-label col-md-3 col-sm-3 col-xs-12">Zip</label>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <input type="text" id="localAddressZip" name="localAddressZip" class="form-control"
+                           ng-model="vm.user.localAddressZip"
+                           placeholder="Local Address Zip" required/>
+                    <div ng-messages="vm.userForm.localAddressZip.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Local Address Zip is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="localAddressCountry" class="control-label col-md-3 col-sm-3 col-xs-12">Country</label>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <select id="localAddressCountry" name="localAddressCountry" ng-model="vm.user.localAddressCountry" class="form-control"
+                            ng-model="vm.user.permanentAddressCountry" placeholder="Country" required>
+                      <option selected="selected" value="">Select Country</option>
+                      <option value="1">Afghanistan</option>
+                      <option value="2">Albania</option>
+                      <option value="3">Algeria</option>
+                      <option value="4">American Samoa</option>
+                      <option value="5">Andorra</option>
+                      <option value="6">Angola</option>
+                      <option value="7">Anguilla</option>
+                      <option value="8">Antarctica</option>
+                      <option value="9">Antigua and Barbuda</option>
+                      <option value="10">Argentina</option>
+                      <option value="11">Armenia</option>
+                      <option value="12">Aruba</option>
+                      <option value="13">Australia</option>
+                      <option value="14">Austria</option>
+                      <option value="15">Azerbaijan</option>
+                      <option value="16">Bahamas</option>
+                      <option value="17">Bahrain</option>
+                      <option value="18">Bangladesh</option>
+                      <option value="19">Barbados</option>
+                      <option value="20">Belarus</option>
+                      <option value="21">Belgium</option>
+                      <option value="22">Belize</option>
+                      <option value="23">Benin</option>
+                      <option value="24">Bermuda</option>
+                      <option value="25">Bhutan</option>
+                      <option value="26">Bolivia</option>
+                      <option value="27">Bosnia and Herzegovina</option>
+                      <option value="28">Botswana</option>
+                      <option value="29">Bouvet Island</option>
+                      <option value="30">Brazil</option>
+                      <option value="31">British Indian Ocean Territory</option>
+                      <option value="32">Brunei</option>
+                      <option value="33">Bulgaria</option>
+                      <option value="34">Burkina Faso</option>
+                      <option value="35">Burundi</option>
+                      <option value="36">Cambodia</option>
+                      <option value="37">Cameroon</option>
+                      <option value="38">Canada</option>
+                      <option value="39">Cape Verde</option>
+                      <option value="40">Cayman Islands</option>
+                      <option value="41">Central African Republic</option>
+                      <option value="42">Chad</option>
+                      <option value="43">Chile</option>
+                      <option value="44">China</option>
+                      <option value="45">Christmas Island</option>
+                      <option value="46">Cocos (Keeling) Islands</option>
+                      <option value="47">Colombia</option>
+                      <option value="48">Comoros</option>
+                      <option value="49">Congo</option>
+                      <option value="50">Democratic Republic of the Congo</option>
+                      <option value="51">Cook Islands</option>
+                      <option value="52">Costa Rica</option>
+                      <option value="53">Cote d'ivoire</option>
+                      <option value="54">Croatia</option>
+                      <option value="55">Cuba</option>
+                      <option value="56">Cyprus</option>
+                      <option value="57">Czech Republic</option>
+                      <option value="58">Denmark</option>
+                      <option value="59">Djibouti</option>
+                      <option value="60">Dominica</option>
+                      <option value="61">Dominican Republic</option>
+                      <option value="62">Ecuador</option>
+                      <option value="63">Egypt</option>
+                      <option value="64">El Salvador</option>
+                      <option value="65">Equatorial Guinea</option>
+                      <option value="66">Eritrea</option>
+                      <option value="67">Estonia</option>
+                      <option value="68">Ethiopia</option>
+                      <option value="69">Falkland Islands (Malvinas)</option>
+                      <option value="70">Faroe Islands</option>
+                      <option value="71">Fiji</option>
+                      <option value="72">Finland</option>
+                      <option value="73">France</option>
+                      <option value="74">French Guiana</option>
+                      <option value="75">French Polynesia</option>
+                      <option value="76">French Southern Territories</option>
+                      <option value="77">Gabon</option>
+                      <option value="78">Gambia</option>
+                      <option value="79">Georgia</option>
+                      <option value="80">Germany</option>
+                      <option value="81">Ghana</option>
+                      <option value="82">Gibraltar</option>
+                      <option value="83">Greece</option>
+                      <option value="84">Greenland</option>
+                      <option value="85">Grenada</option>
+                      <option value="86">Guadaloupe</option>
+                      <option value="87">Guam</option>
+                      <option value="88">Guatemala</option>
+                      <option value="89">Guinea</option>
+                      <option value="90">Guinea-Bissau</option>
+                      <option value="91">Guyana</option>
+                      <option value="92">Haiti</option>
+                      <option value="93">Heard Island and McDonald Islands</option>
+                      <option value="94">Vatican City</option>
+                      <option value="95">Honduras</option>
+                      <option value="96">Hong Kong</option>
+                      <option value="97">Hungary</option>
+                      <option value="98">Iceland</option>
+                      <option value="99">India</option>
+                      <option value="100">Indonesia</option>
+                      <option value="101">Iran</option>
+                      <option value="102">Iraq</option>
+                      <option value="103">Ireland</option>
+                      <option value="104">Israel</option>
+                      <option value="105">Italy</option>
+                      <option value="106">Jamaica</option>
+                      <option value="107">Japan</option>
+                      <option value="108">Jordan</option>
+                      <option value="109">Kazakhstan</option>
+                      <option value="110">Kenya</option>
+                      <option value="111">Kiribati</option>
+                      <option value="112">North Korea</option>
+                      <option value="113">South Korea</option>
+                      <option value="114">Kuwait</option>
+                      <option value="115">Kyrgyzstan</option>
+                      <option value="116">Laos</option>
+                      <option value="117">Latvia</option>
+                      <option value="118">Lebanon</option>
+                      <option value="119">Lesotho</option>
+                      <option value="120">Liberia</option>
+                      <option value="121">Libya</option>
+                      <option value="122">Liechtenstein</option>
+                      <option value="123">Lithuania</option>
+                      <option value="124">Luxembourg</option>
+                      <option value="125">Macao</option>
+                      <option value="126">Macedonia</option>
+                      <option value="127">Madagascar</option>
+                      <option value="128">Malawi</option>
+                      <option value="129">Malaysia</option>
+                      <option value="130">Maldives</option>
+                      <option value="131">Mali</option>
+                      <option value="132">Malta</option>
+                      <option value="133">Marshall Islands</option>
+                      <option value="134">Martinique</option>
+                      <option value="135">Mauritania</option>
+                      <option value="136">Mauritius</option>
+                      <option value="137">Mayotte</option>
+                      <option value="138">Mexico</option>
+                      <option value="139">Micronesia</option>
+                      <option value="140">Moldava</option>
+                      <option value="141">Monaco</option>
+                      <option value="142">Mongolia</option>
+                      <option value="143">Montenegro</option>
+                      <option value="144">Montserrat</option>
+                      <option value="145">Morocco</option>
+                      <option value="146">Mozambique</option>
+                      <option value="147">Myanmar</option>
+                      <option value="148">Namibia</option>
+                      <option value="149">Nauru</option>
+                      <option value="150">Nepal</option>
+                      <option value="151">Netherlands</option>
+                      <option value="152">Netherlands Antilles</option>
+                      <option value="153">New Caledonia</option>
+                      <option value="154">New Zealand</option>
+                      <option value="155">Nicaragua</option>
+                      <option value="156">Niger</option>
+                      <option value="157">Nigeria</option>
+                      <option value="158">Niue</option>
+                      <option value="159">Norfolk Island</option>
+                      <option value="160">Northern Mariana Islands</option>
+                      <option value="161">Norway</option>
+                      <option value="162">Oman</option>
+                      <option value="163">Pakistan</option>
+                      <option value="164">Palau</option>
+                      <option value="165">Palestinian Territory</option>
+                      <option value="166">Panama</option>
+                      <option value="167">Papua New Guinea</option>
+                      <option value="168">Paraguay</option>
+                      <option value="169">Peru</option>
+                      <option value="170">Phillipines</option>
+                      <option value="171">Pitcairn</option>
+                      <option value="172">Poland</option>
+                      <option value="173">Portugal</option>
+                      <option value="174">Puerto Rico</option>
+                      <option value="175">Qatar</option>
+                      <option value="176">Reunion</option>
+                      <option value="177">Romania</option>
+                      <option value="178">Russia</option>
+                      <option value="179">Rwanda</option>
+                      <option value="180">Saint Helena</option>
+                      <option value="181">Saint Kitts and Nevis</option>
+                      <option value="182">Saint Lucia</option>
+                      <option value="183">Saint Pierre and Miquelon</option>
+                      <option value="184">Saint Vincent and the Grenadines</option>
+                      <option value="185">Samoa</option>
+                      <option value="186">San Marino</option>
+                      <option value="187">Sao Tome and Principe</option>
+                      <option value="188">Saudi Arabia</option>
+                      <option value="189">Senegal</option>
+                      <option value="190">Serbia</option>
+                      <option value="191">Seychelles</option>
+                      <option value="192">Sierra Leone</option>
+                      <option value="193">Singapore</option>
+                      <option value="194">Slovakia</option>
+                      <option value="195">Slovenia</option>
+                      <option value="196">Solomon Islands</option>
+                      <option value="197">Somalia</option>
+                      <option value="198">South Africa</option>
+                      <option value="199">South Georgia and the South Sandwich Islands</option>
+                      <option value="200">Spain</option>
+                      <option value="201">Sri Lanka</option>
+                      <option value="202">Sudan</option>
+                      <option value="203">Suriname</option>
+                      <option value="204">Svalbard and Jan Mayen</option>
+                      <option value="205">Swaziland</option>
+                      <option value="206">Sweden</option>
+                      <option value="207">Switzerland</option>
+                      <option value="208">Syria</option>
+                      <option value="209">Taiwan</option>
+                      <option value="210">Tajikistan</option>
+                      <option value="211">Tanzania</option>
+                      <option value="212">Thailand</option>
+                      <option value="213">Timor-Leste</option>
+                      <option value="214">Togo</option>
+                      <option value="215">Tokelau</option>
+                      <option value="216">Tonga</option>
+                      <option value="217">Trinidad and Tobago</option>
+                      <option value="218">Tunisia</option>
+                      <option value="219">Turkey</option>
+                      <option value="220">Turkmenistan</option>
+                      <option value="221">Turks and Caicos Islands</option>
+                      <option value="222">Tuvalu</option>
+                      <option value="223">Uganda</option>
+                      <option value="224">Ukraine</option>
+                      <option value="225">United Arab Emirates</option>
+                      <option value="226">United Kingdom</option>
+                      <option value="227">United States</option>
+                      <option value="228">United States Minor Outlying Islands</option>
+                      <option value="229">Uruguay</option>
+                      <option value="230">Uzbekistan</option>
+                      <option value="231">Vanuatu</option>
+                      <option value="232">Venezuela</option>
+                      <option value="233">Vietnam</option>
+                      <option value="234">Virgin Islands, British</option>
+                      <option value="235">Virgin Islands, US</option>
+                      <option value="236">Wallis and Futuna</option>
+                      <option value="237">Western Sahara</option>
+                      <option value="238">Yemen</option>
+                      <option value="239">Zambia</option>
+                      <option value="240">Zimbabwe</option>
+                      <option value="241">Aland Islands</option>
+                      <option value="242">Isle of Man</option>
+                      <option value="243">Jersey</option>
+                      <option value="244">Saint Barthelemy</option>
+                      <option value="245">Saint Martin</option>
+                      <option value="246">España</option>
+                    </select>
+                    <div ng-messages="vm.userForm.localAddressCountry.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Local Address Country is required.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="clearfix"></span>
+              <br>
+              <div class="form-group">
+                <div class="col-md-6 col-md-offset-3 col-sm-6 col-xs-12">
+                  <button type="button" ng-click="currentSection='job'" class="btn btn-info pull-right">Next <i
+                    class="fa fa-arrow-right"></i></button>
+                  <button type="button" ng-click="currentSection='login'" class="btn btn-default"><i
+                    class="fa fa-arrow-left"></i> Back
+                  </button>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" ng-show="currentSection == 'job'">
+      <div class="col-md-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h3>Job Information
+              <small>Use below form to add job information</small>
+            </h3>
+          </div>
+          <div class="x_content">
+            <fieldset>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group" show-errors>
+                  <label for="originalHireDate" class="control-label col-md-4 col-sm-3 col-xs-12">Original Hire Date
+                    <span
+                      class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="input-group date datePicker">
+                      <input type="text" id="originalHireDate" name="originalHireDate"
+                             class="form-control col-md-7 col-xs-12"
+                             ng-model="vm.user.originalHireDate" update-ng-model-on-blur placeholder="Original Hire Date" required autofocus/>
+                      <span class="input-group-addon">
+                               <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                    </div>
+                    <div ng-messages="vm.userForm.originalHireDate.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Original Hire Date is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="startingDate" class="control-label col-md-4 col-sm-3 col-xs-12">Starting Date <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="input-group date datePicker">
+                      <input type="text" id="startingDate" name="startingDate" class="form-control col-md-7 col-xs-12"
+                             ng-model="vm.user.startingDate" update-ng-model-on-blur placeholder="Starting Date" required/>
+                      <span class="input-group-addon">
+                               <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                    </div>
+                    <div ng-messages="vm.userForm.startingDate.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Starting Date is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="datePayStarts" class="control-label col-md-4 col-sm-3 col-xs-12">Date Pay Starts<span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <select id="datePayStarts" name="datePayStarts" class="form-control col-md-7 col-xs-12"
+                            ng-model="vm.user.datePayStarts" placeholder="Date Pay Starts" required>
+                      <option ng-repeat="i in vm.daysInMonth" value="{{i}}">{{i}}</option>
+                    </select>
+                    <div ng-messages="vm.userForm.datePayStarts.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Date Pay Start is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="employeeNo" class="control-label col-md-4 col-sm-3 col-xs-12">Employee No <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="employeeNo" name="employeeNo" class="form-control col-md-7 col-xs-12"
+                           ng-model="vm.user.employeeNo" placeholder="Employee No" required/>
+                    <div ng-messages="vm.userForm.employeeNo.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Employee No is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="department" class="control-label col-md-4 col-sm-3 col-xs-12">Department <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <select id="department" name="department" class="form-control col-md-7 col-xs-12"
+                            ng-model="vm.user.department" placeholder="Department" required>
+                      <option ng-repeat="department in vm.departments" value="{{department._id}}">{{department.title}}
+                      </option>
+                    </select>
+                    <div ng-messages="vm.userForm.department.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Department is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="position" class="control-label col-md-4 col-sm-3 col-xs-12">Position <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="position" name="position" class="form-control col-md-7 col-xs-12"
+                           ng-model="vm.user.position" placeholder="Position" required/>
+                    <div ng-messages="vm.userForm.position.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Position is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="role" class="control-label col-md-4 col-sm-3 col-xs-12">Role <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+
+                    <select id="role" name="role" class="form-control col-md-7 col-xs-12"
+                            ng-model="vm.user.role" placeholder="Role" required>
+
+                      <option ng-repeat="role in vm.userRoles" ng-selected="vm.user.roles[0] === role._id" value="{{role._id}}">{{role.name}}</option>
+                    </select>
+                    <div ng-messages="vm.userForm.role.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Role is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" ng-if="vm.user.role !== 'mastercontroller'" show-errors>
+                  <label for="role" class="control-label col-md-4 col-sm-3 col-xs-12">Area <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <select id="area" name="area" class="form-control col-md-7 col-xs-12"
+                            ng-model="vm.user.area" placeholder="Area" ng-required="vm.user.role !== 'mastercontroller'">
+                      <option ng-repeat="area in vm.areas" value="{{area._id}}">{{area.title}}</option>
+                    </select>
+                    <div ng-messages="vm.userForm.area.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Area is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="email" class="control-label col-md-4 col-sm-3 col-xs-12">Email <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" id="email" name="email" class="form-control col-md-7 col-xs-12"
+                           ng-model="vm.user.email" placeholder="Email" required>
+                    <div ng-messages="vm.userForm.email.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Email is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" ng-if="vm.user.role !== 'mastercontroller'" show-errors>
+                  <label for="supervisor" class="control-label col-md-4 col-sm-3 col-xs-12">Supervisor</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <select id="supervisor" name="supervisor" class="form-control col-md-7 col-xs-12"
+                            ng-model="vm.user.supervisor" placeholder="Supervisor">
+                      <option ng-repeat="supervisor in vm.supervisors" value="{{supervisor._id}}">{{supervisor.displayName}}
+                      </option>
+                    </select>
+                    <div ng-messages="vm.userForm.supervisor.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Supervisor is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="workLocation" class="control-label col-md-4 col-sm-3 col-xs-12">Work Location <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <select id="workLocation" name="workLocation" class="form-control col-md-7 col-xs-12"
+                            ng-model="vm.user.workLocation" placeholder="Work Location" required>
+                      <option ng-repeat="location in vm.locations" value="{{location._id}}">{{location.title}}</option>
+                    </select>
+                    <div ng-messages="vm.userForm.workLocation.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Work Location is required.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group" show-errors>
+                  <label for="salary" class="control-label col-md-4 col-sm-3 col-xs-12">Salary <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="input-group">
+                      <input type="number" id="salary" name="salary" class="form-control col-md-7 col-xs-12"
+                             ng-model="vm.user.salary" placeholder="Salary" required/>
+                      <span class="input-group-addon">SR</span>
+                    </div>
+                    <div ng-messages="vm.userForm.salary.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Salary is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group" show-errors>
+                  <label class="control-label col-md-4 col-sm-3 col-xs-12">Billing Rate <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="input-group">
+                      <span class="input-group-addon">Monthly</span>
+                      <input type="number" id="billingRateMonthly" name="billingRateMonthly"
+                             class="form-control col-md-7 col-xs-12"
+                             ng-model="vm.user.billingRateMonthly" placeholder="Monthly Billing Rate" required/>
+                      <span class="input-group-addon">SR</span>
+                    </div>
+                    <div ng-messages="vm.userForm.billingRateMonthly.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Monthly Billing Rate is required.</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group" show-errors>
+                  <label class="control-label col-md-4 col-sm-3 col-xs-12"></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="input-group">
+                      <span class="input-group-addon">Weekly</span>
+                      <input type="number" id="billingRateWeekly" name="billingRateWeekly"
+                             class="form-control col-md-7 col-xs-12"
+                             ng-model="vm.user.billingRateWeekly" placeholder="Weekly Billing Rate" required/>
+                      <span class="input-group-addon">SR</span>
+                    </div>
+                    <div ng-messages="vm.userForm.billingRateWeekly.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Weekly Billing Rate is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label class="control-label col-md-4 col-sm-3 col-xs-12"></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="input-group">
+                      <span class="input-group-addon">Hourly</span>
+                      <input type="number" id="billingRateHourly" name="billingRateHourly"
+                             class="form-control col-md-7 col-xs-12"
+                             ng-model="vm.user.billingRateHourly" placeholder="Hourly Billing Rate" required/>
+                      <span class="input-group-addon">SR</span>
+                    </div>
+                    <div ng-messages="vm.userForm.billingRateHourly.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Hourly Billing Rate is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="bounces" class="control-label col-md-4 col-sm-3 col-xs-12">Bounces</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+
+                    <input type="number" id="bounces" name="bounces" class="form-control col-md-7 col-xs-12"
+                           ng-model="vm.user.bounces" placeholder="Bounces"/>
+                    <div ng-messages="vm.userForm.bounces.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Bounces is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label for="leaveofabsense" class="control-label col-md-4 col-sm-3 col-xs-12">Leave of absence <span
+                    class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+
+                    <input type="number" id="leaveofabsense" name="leaveofabsense"
+                           class="form-control col-md-7 col-xs-12"
+                           ng-model="vm.user.leaveofabsense" placeholder="Leave of Absense" required/>
+                    <div ng-messages="vm.userForm.leaveofabsense.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Leave of Absense is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4 col-sm-3 col-xs-12">Skills</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span
+                      class="glyphicon glyphicon-cog"></span> Choose Skills <span class="caret"></span></button>
+                    <ul class="dropdown-menu skills-dropdown">
+                      <li ng-repeat="skill in vm.skills"><a href="javascript:void(0)"><input type="checkbox" class="flat" value="{{skill._id}}" id="skill{{skill._id}}" check-list="vm.userSkills" />&nbsp;<label for="skill{{skill._id}}">{{skill.title}}</label></a></li>
+                    </ul>
+
+                  </div>
+                </div>
+                <br>
+                <div class="form-group">
+                  <label for="professionalLicense" class="control-label col-md-4 col-sm-3 col-xs-12">Professional
+                    License</label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" name="professionalLicense" id="professionalLicense" class="form-control"
+                           ng-model="vm.user.professionalLicense"/>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <hr>
+            <fieldset>
+              <div class="col-md-4 col-sm-12">
+                <h4>Training Background <a class="pull-right btn btn-default btn-xs" data-toggle="modal"
+                                           data-target="#mdlTrainings"><i class="fa fa-plus"></i></a></h4>
+                <div class="separator clearfix"></div>
+                <table class="table table-stripped">
+                  <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-if="!vm.userTrainings.length">
+                    <td colspan="3"><p class="text-center">No record added yet</p></td>
+                  </tr>
+                  <tr ng-repeat="training in vm.userTrainings track by $index">
+                    <td width="60%">{{training.trainingTitle}}</td>
+                    <td width="30%">{{training.trainingDate}}</td>
+                    <td class="text-right"><a role="button" class="btn-xs btn-danger" ng-click="removeTrainingRecord($index)"><i class="fa fa-remove"></i></a></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <h4>Education Background <a class="pull-right btn btn-default btn-xs" data-target="#mdlEducation" data-toggle="modal"><i class="fa fa-plus"></i></a>
+                </h4>
+                <div class="separator clearfix"></div>
+                <table class="table table-stripped">
+                  <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-if="!vm.userEducation.length">
+                    <td colspan="3"><p class="text-center">No record added yet</p></td>
+                  </tr>
+                  <tr ng-repeat="education in vm.userEducation track by $index">
+                    <td width="60%">{{education.educationTitle}}</td>
+                    <td width="30%">{{education.educationDate}}</td>
+                    <td class="text-right"><a role="button" class="btn-xs btn-danger" ng-click="removeEducationRecord($index)"><i class="fa fa-remove"></i></a></td>
+                  </tr>
+                  </tbody>
+                </table>
+
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <h4>Technical Experience <a class="pull-right btn btn-default btn-xs" data-target="#mdlTechExperience" data-toggle="modal"><i class="fa fa-plus"></i></a>
+                </h4>
+                <div class="separator clearfix"></div>
+                <table class="table table-stripped">
+                  <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Duration</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-if="!vm.userTechnicalExperience.length">
+                    <td colspan="3"><p class="text-center">No record added yet</p></td>
+                  </tr>
+                  <tr ng-repeat="techExp in vm.userTechnicalExperience track by $index">
+                    <td width="60%">{{techExp.experienceTitle}}</td>
+                    <td width="30%">{{techExp.techExperienceDate}}</td>
+                    <td class="text-right"><a role="button" class="btn-xs btn-danger" ng-click="removeTechnicalExperienceRecord($index)"><i class="fa fa-remove"></i></a></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+<div id="mdlTrainings" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form class="form-horizontal" name="vm.trainingForm" ng-submit="saveTraining(vm.trainingForm.$valid)" novalidate>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><i class="glyphicon glyphicon-certificate"></i> Add new Training Record</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-horizontal">
+                <div class="form-group" show-errors>
+                  <label class="control-label col-md-4 col-sm-3 col-xs-12">Training Title <span class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <input type="text" name="trainingTitle" id="trainingTitle" class="form-control col-md-7 col-xs-12"
+                           placeholder="Training Title" ng-model="vm.trainingInfo.trainingTitle" required/>
+                    <div ng-messages="vm.trainingForm.trainingTitle.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Title is required.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                  <label class="control-label col-md-4 col-sm-3 col-xs-12">Training Description <span class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                <textarea type="text" name="trainingDescription" id="trainingDescription" ng-model="vm.trainingInfo.trainingDescription" style="resize: none" class="form-control col-md-7 col-xs-12"
+                          placeholder="Training Description. Enter grades obtained, about the training etc" required></textarea>
+                    <div ng-messages="vm.trainingForm.trainingDescription.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Description is required.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" show-errors>
+                  <label class="control-label col-md-4 col-sm-3 col-xs-12">Completed On <span class="text-danger">*</span></label>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="input-group date datePicker">
+                      <input type="text" id="trainingDate" name="trainingDate" update-ng-model-on-blur ng-model="vm.trainingInfo.trainingDate" class="form-control"
+                             placeholder="Training Date" required/>
+                      <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                    </div>
+                    <div ng-messages="vm.trainingForm.trainingDate.$error" role="alert">
+                      <p class="help-block error-text" ng-message="required">Completion Date is required.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Add Training Record</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<div id="mdlEducation" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form class="form-horizontal" name="vm.educationForm" ng-submit="saveEducation(vm.educationForm.$valid)" novalidate>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><i class="glyphicon glyphicon-education"></i> Add new Education Record</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+
+              <div class="form-group" show-errors>
+                <label class="control-label col-md-4 col-sm-3 col-xs-12">Title <span class="text-danger">*</span></label>
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                  <input type="text" id="educationTitle" name="educationTitle" ng-model="vm.educationInfo.educationTitle" class="form-control col-md-7 col-xs-12"
+                         placeholder="Title" required/>
+                  <div ng-messages="vm.educationForm.educationTitle.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Title is required.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group" show-errors>
+                <label class="control-label col-md-4 col-sm-3 col-xs-12">Description <span class="text-danger">*</span></label>
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                <textarea type="text" id="educationDescription" name="educationDescription" ng-model="vm.educationInfo.educationDescription" style="resize: none" class="form-control col-md-7 col-xs-12"
+                          placeholder="Enter grades obtained, stream etc" required></textarea>
+                  <div ng-messages="vm.educationForm.educationDescription.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Description is required.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" show-errors>
+                <label class="control-label col-md-4 col-sm-3 col-xs-12">Completed On <span class="text-danger">*</span></label>
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                  <div class="input-group date datePicker">
+                    <input type="text" id="educationDate" name="educationDate" update-ng-model-on-blur ng-model="vm.educationInfo.educationDate" class="form-control"
+                           placeholder="Date of Completion" required/>
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                  </div>
+                  <div ng-messages="vm.educationForm.educationDate.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Completion Date is required.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<div id="mdlTechExperience" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="glyphicon glyphicon-ok"></i> Add new Technical Experience Record</h4>
+      </div>
+      <form name="vm.techExperienceForm" class="form-horizontal" ng-submit="saveTechExperince(vm.techExperienceForm.$valid)" novalidate>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+
+              <div class="form-group" show-errors>
+                <label class="control-label col-md-4 col-sm-3 col-xs-12">Title <span class="text-danger">*</span></label>
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                  <input type="text" id="experienceTitle" name="experienceTitle" ng-model="vm.techExperienceInfo.experienceTitle"  class="form-control col-md-7 col-xs-12"
+                         placeholder="Title" required />
+                  <div ng-messages="vm.techExperienceForm.experienceTitle.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Experience Title is required.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group" show-errors>
+                <label class="control-label col-md-4 col-sm-3 col-xs-12">Description <span class="text-danger">*</span></label>
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                <textarea type="text" id="techExperienceDescription" name="techExperienceDescription" ng-model="vm.techExperienceInfo.techExperienceDescription" style="resize: none" class="form-control col-md-7 col-xs-12"
+                          placeholder="Enter description of the technical experties obtained" required></textarea>
+                  <div ng-messages="vm.techExperienceForm.techExperienceDescription.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Experience Description is required.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" show-errors>
+                <label class="control-label col-md-4 col-sm-3 col-xs-12">Duration <span class="text-danger">*</span></label>
+                <div class="col-md-8 col-sm-6 col-xs-12">
+
+                  <input type="text" id="techExperienceDate" name="techExperienceDate" update-ng-model-on-blur ng-model="vm.techExperienceInfo.techExperienceDate" data-auto-apply="false" data-show-dropdowns="true" data-linked-calendars="false" data-locale='{"format":"YYYY-MM-DD"}' class="form-control dateRangePicker"
+                         placeholder="Date of Completion" required/>
+
+                  <div ng-messages="vm.techExperienceForm.techExperienceDate.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Duration is required.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Add new Experience Record</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

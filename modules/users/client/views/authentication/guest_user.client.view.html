@@ -1,0 +1,72 @@
+<section class="inner-page-top-sec" style="background-image:url(/media/img/slide1.jpg);">
+    <div class="container">
+        <h2>Guest User</h2>
+        <div class="page-bradcrums">
+            <ol class="breadcrumb">
+                <li><a href="javascript:void(0)">Home</a></li>
+                <li class="active">Guest User</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<section class="log-reg-sec">
+    <div class="popup-outer">
+        <div class="">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="madal-logo"><a href="javascript:void(0)"><img src="/media/img/modal-logo.png" alt="site Logo"/></a></div>
+                    </div>
+                    <div class="modal-body log-form-flds">
+                        <h1>Continue as Guest User</h1>
+                        <form name="vm.userForm" ng-submit="vm.guestUser(vm.userForm.$valid)" class="signin" novalidate autocomplete="off" novalidate>
+                            <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.credentials.firstName" placeholder="First Name" required autofocus>
+                            
+                            <div ng-if="submitted || vm.userForm.firstName.$dirty">
+                            <div  ng-messages="vm.userForm.firstName.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">First name is required.</p>
+                            </div>
+                            </div>
+                            <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.credentials.lastName" placeholder="Last Name" required>
+                            <div ng-if="submitted || vm.userForm.lastName.$dirty">
+                            <div ng-messages="vm.userForm.lastName.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">Last name is required.</p>
+                            </div>
+                            </div>
+
+                            <input type="email" id="email" name="email" class="form-control" ng-model="vm.credentials.email" placeholder="Email" lowercase required>
+                            
+                            <div ng-if="submitted || vm.userForm.email.$dirty">
+                            <div ng-messages="vm.userForm.email.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">Email address is required.</p>
+                                <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
+                            </div>
+                            </div>
+
+                            <input type="number" id="mobileNo" name="mobileNo" class="form-control" ng-model="vm.credentials.mobileNo" placeholder="Mobile No" required >
+
+                            <div ng-if="submitted || vm.userForm.mobileNo.$dirty">
+                            <div ng-messages="vm.userForm.mobileNo.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">Mobile No. is required.</p>
+                                
+                            </div>
+                            </div>
+                            
+                         
+                            
+                       
+                          
+                            <button type="submit" class="btn">Submit</button>
+                            <div class="clearfix cust-checker">
+                                <div class="text-center">By clicking Submit, you agree to XYZ.com's <a href="javascript:void(0)">Terms of Use</a> and <a href="javascript:void(0)">Privacy Policy</a>.</div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        Already have an account? <a ui-sref="authentication.signin" >Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

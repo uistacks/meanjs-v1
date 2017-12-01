@@ -1,0 +1,62 @@
+
+
+
+
+
+    <div class="dashboard-content fullHt">
+                <div class="dash-board-title">Completed Services</div>
+                <div class="dash-info-outers">
+                    <div class="list-group">
+                        <div class="table-responsive my_table_style">
+                            <table class="table table-bordered table-hover">
+                               <thead>
+                                    <tr>
+                                        <th>Job Number</th>
+                                        <th>Technician</th>
+                                        <th>Service</th>
+                                        <th>Service Type </th>
+                                        <th>Service Booking Type</th>
+                                        <th>Description</th>
+                                        <th>View Address(Map)</th>
+                                        <th>Status</th>
+                                        <th>Requested On </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="booking in vm.completed_jobs" >
+                                        <td>{{$index+1}}</td>
+                                        <td>{{booking.technician.displayName}}</td>
+                                        <td>{{booking.service.title}}</td>
+                                        <td>{{(booking.serviceType==1)?'One Time':'Recurring'}}</td>
+                                        <td>{{booking.bookServiceType==1?'Now':'Schedule'}}</td>
+                                        <td>{{booking.workDescription}}</td>
+                                        <td> <a ui-sref="book.userCompletedJobsDetail({bookingId:booking._id})">View Detail
+                                            </a></td>
+                                        <td>
+                                            Completed
+                                            
+                                        </td>
+                                        
+                                        <td>{{booking.created | date:'MM/dd/y hh:mm:ss'}}</td>
+                                    </tr>
+                                    <tr>
+                                    	<td>asldjg ashgjasfd</td>
+                                        <td>asldjg ashgjasfd</td>
+                                        <td>asldjg ashgjasfd</td>
+                                        <td>asldjg ashgjasfd</td>
+                                        <td>asldjg ashgjasfd</td>
+                                        <td>asldjg ashgjasfd</td>
+                                        <td>asldjg ashgjasfd</td>
+                                        <td>asldjg ashgjasfd</td>
+                                        <td>asldjg ashgjasfd</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div ng-if="vm.completed_jobs.length==0">
+                            No record Found.
+                        </div>
+ 
+  </div>
+                </div>
+            </div>

@@ -1,0 +1,87 @@
+@font-face {
+  font-family: 'home';
+  src:  url('../fonts/home.eot?d1b1uz');
+  src:  url('../fonts/home.eot?d1b1uz#iefix') format('embedded-opentype'),
+    url('../fonts/home.ttf?d1b1uz') format('truetype'),
+    url('../fonts/home.woff?d1b1uz') format('woff'),
+    url('../fonts/home.svg?d1b1uz#home') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="hm-"], [class*=" hm-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'home' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hm-cancel:before {
+  content: "\e912";
+}
+.hm-ac_-maintenance:before {
+  content: "\e900";
+}
+.hm-carpenter:before {
+  content: "\e901";
+}
+.hm-companied:before {
+  content: "\e902";
+}
+.hm-electrical:before {
+  content: "\e903";
+}
+.hm-logo:before {
+  content: "\e904";
+}
+.hm-logo_footer .path1:before {
+  content: "\e905";
+  color: rgb(255, 255, 255);
+}
+.hm-logo_footer .path2:before {
+  content: "\e906";
+  margin-left: -4.23046875em;
+  color: rgb(205, 33, 34);
+}
+.hm-mouse:before {
+  content: "\e907";
+}
+.hm-plumping:before {
+  content: "\e908";
+}
+.hm-search:before {
+  content: "\e909";
+}
+.hm-step_01:before {
+  content: "\e90a";
+}
+.hm-step_02:before {
+  content: "\e90b";
+}
+.hm-step_03:before {
+  content: "\e90c";
+}
+.hm-step_04:before {
+  content: "\e90d";
+}
+.hm-step_thin_01:before {
+  content: "\e90e";
+}
+.hm-step_thin_02:before {
+  content: "\e90f";
+}
+.hm-step_thin_03:before {
+  content: "\e910";
+}
+.hm-step_thin_04:before {
+  content: "\e911";
+}
+

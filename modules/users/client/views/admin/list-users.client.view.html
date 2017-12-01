@@ -1,0 +1,7 @@
+<section ng-if="vm.userType == 'user'" ng-include="'/modules/users/client/views/admin/user-listings/list-customers.client.view.html'"></section>
+<section ng-if="vm.userType == 'mastercontroller'" ng-include="'/modules/users/client/views/admin/user-listings/list-master-controllers.client.view.html'"></section>
+<section ng-if="vm.userType == 'areamanager'" ng-include="'/modules/users/client/views/admin/user-listings/list-area-managers.client.view.html'"></section>
+<section ng-if="vm.userType == 'subadmin'" ng-include="'/modules/users/client/views/admin/user-listings/list-sub-admins.client.view.html'"></section>
+<section ng-if="vm.userType == 'controller'" ng-include="'/modules/users/client/views/admin/user-listings/list-controllers.client.view.html'"></section>
+<section ng-if="vm.userType == 'technician'" ng-include="'/modules/users/client/views/admin/user-listings/list-technicians.client.view.html'"></section>
+<section ng-if="vm.userType == 'employee'" ng-include="'/modules/users/client/views/admin/user-listings/list-employee.client.view.html'"></section>

@@ -1,0 +1,42 @@
+<style>
+  .angular-google-map-container { height: 400px; }
+  .searchboxInput {padding:5px; top:10px !important; width: 250px;}
+</style>
+<section>
+  <div class="page-header">
+    <h1>Manage Leaves</h1>
+  </div>
+  <div class="pull-right">
+    <a ng-show="vm.leave._id" class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div class="row">
+  <div class="col-md-10 col-md-offset-1"><div class="x_panel">
+    <div class="x_title">
+      <h3>{{vm.leave._id ? 'Update Leave' : 'Add New Leave'}} <small>Use below form to change the fields</small></h3>
+    </div>
+    <div class="x_content">
+    <form name="vm.form.leaveForm" class="form-horizontal" ng-submit="vm.save(vm.form.leaveForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Title</label>
+          <input name="title" type="text" ng-model="vm.leave.title" id="title" class="form-control" placeholder="Title" required autofocus>
+          <div ng-messages="vm.form.leaveForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Leave title is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">Leave Description</label>
+          <textarea class="form-control" name="content" data-ng-model="vm.leave.content" id="content"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.leave._id ? 'Update' : 'Create'}}</button> <a class="btn btn-default" role="button" ui-sref="admin.leaves.list">Cancel</a>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>

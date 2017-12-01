@@ -1,0 +1,10 @@
+<div class="row" ng-controller="DashboardController as vm">
+  <div class="col-md-12">
+  <h1 ng-if="vm.authentication.user.roles[0] == 'admin'">Welcome to CEO Dashboard</h1>
+  <h1 ng-if="vm.authentication.user.roles[0] == 'mastercontroller'">Welcome to Master Controller Dashboard</h1>
+  <h1 ng-if="vm.authentication.user.roles[0] == 'areamanager'">Welcome to Area Manager Dashboard</h1>
+  <h1 ng-if="vm.authentication.user.roles[0] == 'subadmin'">Welcome to Admin Dashboard</h1>
+  <h1 ng-if="vm.authentication.user.roles[0] == 'controller'">Welcome to Controller Dashboard</h1>
+  <h1 ng-if="vm.authentication.user.roles[0] == 'technician'">Welcome to Technician Dashboard</h1>
+</div>
+</div>

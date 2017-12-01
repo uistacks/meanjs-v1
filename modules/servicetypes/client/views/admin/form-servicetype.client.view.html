@@ -1,0 +1,47 @@
+<section>
+  <div class="page-header">
+    <h1>Manage Service Types</h1>
+  </div>
+  <div class="pull-right">
+    <a ng-show="vm.servicetype._id" class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div class="row">
+  <div class="col-md-10 col-md-offset-1"><div class="x_panel">
+    <div class="x_title">
+      <h3>{{vm.servicetype._id ? 'Update Service Type' : 'Add New Service Type'}} <small>Use below form to change the fields</small></h3>
+    </div>
+    <div class="x_content">
+    <form name="vm.form.servicetypeForm" class="form-horizontal" ng-submit="vm.save(vm.form.servicetypeForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="area">Choose Area for This Service Type</label>
+          <select name="area" id="area" ng-model="vm.servicetype.area" class="form-control" required>
+            <option ng-repeat="area in vm.areas" value="{{area._id}}">{{area.title}}</option>
+          </select>
+          <div ng-messages="vm.form.servicetypeForm.area.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Service Type Area is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Title</label>
+          <input name="title" type="text" ng-model="vm.servicetype.title" id="title" class="form-control" placeholder="Title" required autofocus>
+          <div ng-messages="vm.form.servicetypeForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Service Type title is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">Service Type Description</label>
+          <textarea class="form-control" name="content" data-ng-model="vm.servicetype.content" id="content"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.servicetype._id ? 'Update' : 'Create'}}</button> <a class="btn btn-default" role="button" ui-sref="admin.servicetypes.list">Cancel</a>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>

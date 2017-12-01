@@ -1,0 +1,38 @@
+<section>
+  <div class="page-header">
+    <h1>Manage KPI's</h1>
+  </div>
+  <div class="pull-right">
+    <a ng-show="vm.kpi._id" class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div class="row">
+  <div class="col-md-10 col-md-offset-1"><div class="x_panel">
+    <div class="x_title">
+      <h3>{{vm.kpi._id ? 'Update KPI' : 'Add New KPI'}} <small>Use below form to change the fields</small></h3>
+    </div>
+    <div class="x_content">
+    <form name="vm.form.kpiForm" class="form-horizontal" ng-submit="vm.save(vm.form.kpiForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Title</label>
+          <input name="title" type="text" ng-model="vm.kpi.title" id="title" class="form-control" placeholder="Title" required autofocus>
+          <div ng-messages="vm.form.kpiForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">KPI Title is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">KPI Description</label>
+          <textarea class="form-control" name="content" required data-ng-model="vm.kpi.content" id="content"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.kpi._id ? 'Update' : 'Create'}}</button> <a class="btn btn-default" role="button" ui-sref="admin.kpis.list">Cancel</a>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>

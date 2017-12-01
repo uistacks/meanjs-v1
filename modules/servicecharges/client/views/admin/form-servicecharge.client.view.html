@@ -1,0 +1,79 @@
+<section>
+  <div class="page-header">
+    <h1>Manage Service Charges</h1>
+  </div>
+  <div class="pull-right">
+    <a ng-show="vm.servicecharge._id" class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div class="row">
+  <div class="col-md-10 col-md-offset-1"><div class="x_panel">
+    <div class="x_title">
+      <h3>{{vm.servicecharge._id ? 'Update Service Charges' : 'Add New Service Charge'}} <small>Use below form to change the fields</small></h3>
+    </div>
+    <div class="x_content">
+    <form name="vm.form.servicechargeForm" class="form-horizontal" ng-submit="vm.save(vm.form.servicechargeForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="area">Choose Area</label>
+          <select name="area" ng-model="vm.servicecharge.area" id="area" class="form-control" placeholder="Area" required autofocus>
+            <option value="">Choose Area</option>
+            <option ng-repeat="area in vm.areas" value="{{area._id}}">{{area.title}}</option>
+          </select>
+          <div ng-messages="vm.form.servicechargeForm.area.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Area is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="area">Choose Service</label>
+          <select name="service" ng-model="vm.servicecharge.service" id="service" class="form-control" placeholder="Service" required >
+            <option value="">Choose Service</option>
+            <option ng-repeat="service in vm.services" value="{{service._id}}">{{service.title}}</option>
+          </select>
+          <div ng-messages="vm.form.servicechargeForm.service.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Service is required.</p>
+          </div>
+        </div>
+
+        <div class="row">
+        <div class="col-md-4 col-sm-12">
+        <div class="form-group" show-errors>
+
+          <label class="control-label" for="hourlyCharges">Hourly Charges</label>
+          <input type="text" name="hourlyCharges" id="hourlyCharges" class="form-control" ng-model="vm.servicecharge.hourlyCharges" value="0" required>
+          <div ng-messages="vm.form.servicechargeForm.hourlyCharges.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Hourly Charges are required. Please keep 0 for no charges</p>
+          </div>
+          </div>
+        </div>
+          <div class="col-md-4 col-sm-12">
+            <div class="form-group" show-errors>
+            <label class="control-label" for="weeklyCharges">Weekly Charges</label>
+            <input type="text" name="weeklyCharges" id="weeklyCharges" class="form-control" ng-model="vm.servicecharge.weeklyCharges" value="0" required>
+            <div ng-messages="vm.form.servicechargeForm.weeklyCharges.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Weekly Charges are required. Please keep 0 for no charges</p>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <div class="form-group" show-errors>
+            <label class="control-label" for="monthlyCharges">Monthly Charges</label>
+            <input type="text" name="monthlyCharges" id="monthlyCharges" class="form-control" ng-model="vm.servicecharge.monthlyCharges" value="0" required>
+            <div ng-messages="vm.form.servicechargeForm.monthlyCharges.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Monthly Charges are required. Please keep 0 for no charges</p>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.servicecharge._id ? 'Update' : 'Create'}}</button> <a class="btn btn-default" role="button" ui-sref="admin.servicecharges.list">Cancel</a>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>

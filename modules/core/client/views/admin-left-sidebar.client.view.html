@@ -1,0 +1,55 @@
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu" ng-controller="HeaderController as vm">
+  <div class="menu_section">
+    <h3>General</h3>
+    <ul class="nav side-menu">
+      <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li ng-if="vm.authentication.user.roles[0] == 'admin'"><a ui-sref="admin.index">Dashboard</a></li>
+          <li ng-if="vm.authentication.user.roles[0] == 'mastercontroller'"><a ui-sref="admin.index">Dashboard</a></li>
+          <li ng-if="vm.authentication.user.roles[0] == 'areamanager'"><a ui-sref="admin.index">Dashboard</a></li>
+          <li ng-if="vm.authentication.user.roles[0] == 'subadmin'"><a ui-sref="admin.index">Dashboard</a></li>
+          <li ng-if="vm.authentication.user.roles[0] == 'controller'"><a ui-sref="admin.index">Dashboard</a></li>
+          <li ng-if="vm.authentication.user.roles[0] == 'technician'"><a ui-sref="admin.index">Dashboard</a></li>
+        </ul>
+      </li>
+      <li><a ui-sref="admin.users({userType: 'employees'})"><i class="fa fa-user-secret"></i>  Employees</a></li>
+      <li><a ui-sref="admin.users({userType: 'customers'})"><i class="fa fa-users"></i> Customers </a></li>
+    </ul>
+  </div>
+  <div class="menu_section">
+    <h3>Configurations</h3>
+    <ul class="nav side-menu">
+      <li><a><i class="fa fa-gears"></i> Settings <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a ui-sref="admin.skills.list">Manage Skill Sets</a></li>
+          <li><a ui-sref="admin.leaves.list">Manage Leaves</a></li>
+          <li><a ui-sref="admin.departments.list">Manage Departments</a></li>
+          <li><a ui-sref="admin.locations.list">Manage Locations</a></li>
+          <li><a ui-sref="admin.kpis.list">Manage KPI</a></li>
+          <li><a ui-sref="admin.stdtimeslots.list">Manage Standard Work Time</a></li>
+          <li><a ui-sref="admin.bookingtimeslots.list">Manage Time Slots for Booking</a></li>
+          <li><a ui-sref="admin.areas.list">Manage Areas</a></li>
+          <li><a ui-sref="admin.inventories.list">Manage Inventory</a></li>
+          <li><a ui-sref="admin.globalsettings.list">Manage Global Settings</a></li>
+        </ul>
+      </li>
+      <li><a><i class="fa fa-ge"></i> Services <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a ui-sref="admin.servicetypes.list">Manage Service Types</a></li>
+          <li><a ui-sref="admin.servicesubtypes.list">Manage Service Sub-Types</a></li>
+          <li><a ui-sref="admin.services.list">Manage Services</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="menu_section">
+    <h3>Content</h3>
+    <ul class="nav side-menu">
+      <li><a ui-sref="admin.contentpages.list"><i class="fa fa-book"></i> Content Pages </a></li>
+      <li><a ui-sref="admin.emailtemplates.list"><i class="fa fa-book"></i> Email Templates </a></li>
+      <li><a ui-sref="admin.bannerimages.list"><i class="fa fa-image"></i> Home Page Banner Images </a></li>
+    </ul>
+  </div>
+
+</div>
